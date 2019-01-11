@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
-
-//Mollie was here
+import frc.robot.subsystems.Drive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,7 +26,15 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+
+    // MAGIC NUMBERS
+  private static int LEFT1PORT = 5;
+  private static int LEFT2PORT = 5;
+  private static int RIGHT1PORT = 5;
+  private static int RIGHT2PORT = 5;
+
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static Drive drivedrivedrive = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT);
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -43,6 +50,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
   }
 
   /**
