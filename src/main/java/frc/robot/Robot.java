@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,8 +34,10 @@ public class Robot extends TimedRobot {
   private static int RIGHT1PORT = 5;
   private static int RIGHT2PORT = 5;
 
+  public static Joystick gamePad3 = new Joystick(0);
+
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static Drive drivedrivedrive = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT);
+  public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT);
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -132,6 +135,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+      drivymcDriveDriverson.drive.arcadeDrive(gamePad3.GetRawAxis(), gamePad3.GetRawAxis()); 
   }
 
   /**
