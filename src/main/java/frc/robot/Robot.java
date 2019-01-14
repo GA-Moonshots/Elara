@@ -29,10 +29,10 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends TimedRobot {
 
     // MAGIC NUMBERS
-  private static int LEFT1PORT = 5;
-  private static int LEFT2PORT = 5;
-  private static int RIGHT1PORT = 5;
-  private static int RIGHT2PORT = 5;
+  private static int LEFT1PORT = 1;
+  private static int LEFT2PORT = 0;
+  private static int RIGHT1PORT = 3;
+  private static int RIGHT2PORT = 2;
 
   public static Joystick gamePad3 = new Joystick(0);
 
