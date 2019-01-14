@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-      drivymcDriveDriverson.drive.arcadeDrive(gamePad3.GetRawAxis(), gamePad3.GetRawAxis()); 
+      drivymcDriveDriverson.drive.tankDrive(gamePad3.getRawAxis(0), gamePad3.getRawAxis(1)); 
   }
 
   /**
