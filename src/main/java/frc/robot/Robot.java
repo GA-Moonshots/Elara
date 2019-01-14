@@ -135,7 +135,21 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-      drivymcDriveDriverson.drive.tankDrive(gamePad3.getRawAxis(0), gamePad3.getRawAxis(1)); 
+
+    //MANUAL DEAD ZONE
+    double dead = 0.15;
+
+    double valueleftx = gamePad3.getRawAxis(0);
+    double valuelefty = gamePad3.getRawAxis(1);
+
+    if(Math.abs(valueleftx) < dead){
+      valueleftx = 0;
+    }
+    if(Math.abs(valuelefty) < dead){
+      valuelefty = 0;
+    }
+
+    drivymcDriveDriverson.drive.tankDrive(valueleftx, valuelefty); 
   }
 
   /**
