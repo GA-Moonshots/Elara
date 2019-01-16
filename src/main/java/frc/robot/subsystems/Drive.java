@@ -47,7 +47,7 @@ public class Drive extends Subsystem {
     drive = new DifferentialDrive(rightSide, leftSide);
 
     // TODO: still gotta enable deadband elimination!
-    
+    // even though we did it in Robot.java
   }
 
   @Override
