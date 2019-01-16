@@ -149,7 +149,7 @@ public class Robot extends TimedRobot {
       valuelefty = 0;
     }
 
-    drivymcDriveDriverson.drive.tankDrive(valueleftx, valuelefty); 
+    // drivymcDriveDriverson.drive.tankDrive(valueleftx, valuelefty); 
   }
 
   /**
