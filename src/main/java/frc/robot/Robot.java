@@ -9,6 +9,9 @@
 
 package frc.robot;
 
+// TODO: move this to a sensor subsystem
+import edu.wpi.first.wpilibj.AnalogGyro;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,6 +38,9 @@ public class Robot extends TimedRobot {
   private static int RIGHT2PORT = 2;
 
   public static Joystick gamePad3 = new Joystick(0);
+
+  // move to subsystem
+  private AnalogGyro gyro = new AnalogGyro(1);
 
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT);
@@ -136,6 +142,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
+   SmartDashboard.putNumber("Gyro",gyro.getAngle())
+
     //MANUAL DEAD ZONE
     double dead = 0.15;
 
@@ -160,3 +168,4 @@ public class Robot extends TimedRobot {
   }
   
 }
+
