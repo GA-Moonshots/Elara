@@ -142,7 +142,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-   SmartDashboard.putNumber("Gyro",gyro.getAngle())
+   SmartDashboard.putNumber("Gyro",gyro.getAngle());
 
     //MANUAL DEAD ZONE
     double dead = 0.15;
