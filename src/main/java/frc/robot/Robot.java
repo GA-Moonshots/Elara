@@ -9,7 +9,6 @@
 
 package frc.robot;
 
-// TODO: move this to a sensor subsystem
 import edu.wpi.first.wpilibj.AnalogGyro;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -17,8 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.OneEightyTurn;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -42,11 +40,12 @@ public class Robot extends TimedRobot {
   public static Joystick gamePad3 = new Joystick(0);
   Button xButton = new JoystickButton(gamePad3, 3);
 
-  // move to subsystem
-  private AnalogGyro gyro = new AnalogGyro(1);
 
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT);
+  // SENSORS
+  // TODO: wrap gyro to work w/ SmartDashboard like last year
+  public static AnalogGyro gyro = new AnalogGyro(1);
+
+  public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT,  gyro);
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -59,10 +58,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    m_chooser.setDefaultOption("Default Auto", new OneEightyTurn());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
+    // HANG BUTTONS
+    xButton.whenPressed(new OneEightyTurn());
   }
 
   /**
@@ -160,7 +161,7 @@ public class Robot extends TimedRobot {
       valuelefty = 0;
     }
 
-    button1.whenPressed(new oneEightyTurn());
+    xButton.whenPressed(new OneEightyTurn());
 
     drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
   }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.AnalogGyro;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -19,6 +20,9 @@ public class Drive extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   
+  // here's a gyro
+  public AnalogGyro gyro;
+
   // here's some motors
   public Jaguar leftMotor1;
   public Jaguar leftMotor2;
@@ -32,7 +36,7 @@ public class Drive extends Subsystem {
   SpeedControllerGroup rightSide;
   SpeedControllerGroup leftSide;
 
-  public Drive(int leftPort1, int leftPort2, int rightPort1, int rightPort2){
+  public Drive(int leftPort1, int leftPort2, int rightPort1, int rightPort2, AnalogGyro g){    
     // linking motors to ports
     leftMotor1 = new Jaguar(leftPort1);
     leftMotor2 = new Jaguar(leftPort2);
