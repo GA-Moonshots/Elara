@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   private static int RIGHT2PORT = 2;
 
   public static Joystick gamePad3 = new Joystick(0);
-  Button button3 = new JoystickButton(gamePad3, 3);
+  Button xButton = new JoystickButton(gamePad3, 3);
 
   // move to subsystem
   private AnalogGyro gyro = new AnalogGyro(1);
