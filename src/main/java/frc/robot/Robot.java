@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
   private static int RIGHT2PORT = 2;
 
   public static Joystick gamePad3 = new Joystick(0);
+  Button button1 = new JoystickButton(leftJoy, 3);
 
   // move to subsystem
   private AnalogGyro gyro = new AnalogGyro(1);
@@ -156,6 +157,8 @@ public class Robot extends TimedRobot {
     if(Math.abs(valuelefty) < dead){
       valuelefty = 0;
     }
+
+    button1.whenPressed(new oneEightyTurn());
 
     drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
   }
