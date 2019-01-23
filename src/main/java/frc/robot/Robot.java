@@ -21,6 +21,8 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,7 +40,7 @@ public class Robot extends TimedRobot {
   private static int RIGHT2PORT = 2;
 
   public static Joystick gamePad3 = new Joystick(0);
-  Button button1 = new JoystickButton(leftJoy, 3);
+  Button button3 = new JoystickButton(gamePad3, 3);
 
   // move to subsystem
   private AnalogGyro gyro = new AnalogGyro(1);
