@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */ 
-public class Drive extends PIDSubsystem {
+public class Drive extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   
@@ -38,7 +38,7 @@ public class Drive extends PIDSubsystem {
   SpeedControllerGroup leftSide;
 
   public Drive(int leftPort1, int leftPort2, int rightPort1, int rightPort2, AnalogGyro g){    
-    super("Drive",1.0,0.0,0.0);
+
     // linking motors to ports
     leftMotor1 = new Jaguar(leftPort1);
     leftMotor2 = new Jaguar(leftPort2);
@@ -62,13 +62,4 @@ public class Drive extends PIDSubsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  @Override
-  protected double returnPIDInput() {
-    return 0;
   }
-
-  @Override
-  protected void usePIDOutput(double output) {
-
-  }
-}

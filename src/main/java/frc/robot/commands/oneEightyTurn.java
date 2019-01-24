@@ -13,7 +13,7 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class OneEightyTurn extends PIDCommand {
+public class OneEightyTurn extends Command {
 
   private double target;
 
@@ -32,7 +32,7 @@ public class OneEightyTurn extends PIDCommand {
   @Override
   protected void execute() {
       Robot.drivymcDriveDriverson.drive.arcadeDrive(0, .5);
-      if(Math.abs(Robot.gyro.getAngle() - target) < 1){
+      if(Math.abs(Robot.gyro.getAngle() - target) < 5){
         end();
       }
   }
@@ -53,15 +53,7 @@ public class OneEightyTurn extends PIDCommand {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
   }
 
-  @Override
-  protected double returnPIDInput() {
-    return 0;
-  }
-
-  @Override
-  protected void usePIDOutput(double output) {
-
-  }
 }
