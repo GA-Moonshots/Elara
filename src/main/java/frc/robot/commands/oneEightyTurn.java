@@ -8,11 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class OneEightyTurn extends Command {
+public class OneEightyTurn extends PIDCommand {
 
   private double target;
 
@@ -52,5 +53,15 @@ public class OneEightyTurn extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return 0;
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+
   }
 }
