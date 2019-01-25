@@ -21,6 +21,7 @@ import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Jaguar;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,9 +37,18 @@ public class Robot extends TimedRobot {
   private static int LEFT2PORT = 0;
   private static int RIGHT1PORT = 3;
   private static int RIGHT2PORT = 2;
+  private static int ELEVATORPORT = 4;
 
+  // declaring buttons!
   public static Joystick gamePad3 = new Joystick(0);
   Button xButton = new JoystickButton(gamePad3, 3);
+  Button aButton = new JoystickButton(gamePad3, 1);
+  Button bButton = new JoystickButton(gamePad3, 2);
+  Button yButton = new JoystickButton(gamePad3, 4);
+
+
+  // here's a motor i'm declaring here, sorry Mr. A it's not in a command
+  public Jaguar elevatorMotor;
 
 
   // SENSORS
@@ -167,6 +177,15 @@ public class Robot extends TimedRobot {
     xButton.whenPressed(new OneEightyTurn());
 
     drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
+
+    while(gamePad3.getRawButton(4)){
+      // TODO: make motor raise (Y Button)
+      
+    }
+    while(gamePad3.getRawButton(1)){
+      // TODO: make motor lower (A Button)
+      
+    }
   }
 
   /**
