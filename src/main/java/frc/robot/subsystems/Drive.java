@@ -14,12 +14,10 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */ 
+// TODO: Change back to PIDSubsystem
 public class Drive extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  
+  // TODO: Research MotionProfileStatus
   
   // here's a gyro
   public AnalogGyro gyro;
@@ -37,7 +35,11 @@ public class Drive extends Subsystem {
   SpeedControllerGroup rightSide;
   SpeedControllerGroup leftSide;
 
+  // TODO: PID tuner
+
   public Drive(int leftPort1, int leftPort2, int rightPort1, int rightPort2, AnalogGyro g){    
+
+    
 
     // linking motors to ports
     leftMotor1 = new Jaguar(leftPort1);
@@ -53,7 +55,9 @@ public class Drive extends Subsystem {
     drive = new DifferentialDrive(rightSide, leftSide);
 
     // TODO: still gotta enable deadband elimination!
-    // even though we did it in Robot.java
+    // even though we did it in Robot.java...?
+
+    // TODO: config pid loop
   }
 
   @Override

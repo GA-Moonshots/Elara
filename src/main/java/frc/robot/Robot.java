@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class Robot extends TimedRobot {
 
-    // MAGIC NUMBERS
+  // TODO: move these MAGIC NUMBERS to RobotMap
   private static int LEFT1PORT = 1;
   private static int LEFT2PORT = 0;
   private static int RIGHT1PORT = 3;
@@ -147,6 +147,9 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
    SmartDashboard.putNumber("Gyro",gyro.getAngle());
+
+    // TODO: Move this logic to a drive command similar to:
+    // https://github.com/BHSSFRC/3494_2018_repo/blob/master/src/main/java/org/usfirst/frc/team3494/robot/commands/drive/Drive.java
 
     //MANUAL DEAD ZONE
     double dead = 0.15;
