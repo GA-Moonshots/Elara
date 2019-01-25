@@ -34,10 +34,10 @@ public class Robot extends TimedRobot {
 
   // TODO: move these MAGIC NUMBERS to RobotMap
   private static int LEFT1PORT = 1;
-  private static int LEFT2PORT = 0;
+  // private static int LEFT2PORT = 0;
   private static int RIGHT1PORT = 3;
   private static int RIGHT2PORT = 2;
-  private static int ELEVATORPORT = 4;
+  private static int ELEVATORPORT = 0;
 
   // declaring buttons!
   public static Joystick gamePad3 = new Joystick(0);
@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
   // TODO: wrap gyro to work w/ SmartDashboard like last year
   public static AnalogGyro gyro = new AnalogGyro(1);
 
-  public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT,  gyro);
+  // public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT,  gyro);
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -174,9 +174,9 @@ public class Robot extends TimedRobot {
       valuelefty = 0;
     }
 
-    xButton.whenPressed(new OneEightyTurn());
+    // xButton.whenPressed(new OneEightyTurn());
 
-    drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
+    // drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
 
     while(gamePad3.getRawButton(4)){
       // TODO: make motor raise (Y Button)
