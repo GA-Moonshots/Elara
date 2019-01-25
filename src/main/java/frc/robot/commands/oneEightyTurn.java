@@ -13,11 +13,11 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class OneEightyTurn extends Command {
+public class oneEightyTurn extends Command {
 
   private double target;
 
-  public OneEightyTurn() {
+  public oneEightyTurn() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.drivymcDriveDriverson);
   }
