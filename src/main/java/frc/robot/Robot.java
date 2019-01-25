@@ -180,11 +180,11 @@ public class Robot extends TimedRobot {
 
     while(gamePad3.getRawButton(4)){
       // TODO: make motor raise (Y Button)
-      elevatorMotor.set(0.1);
+      elevatorMotor.set(0.5);
     }
     while(gamePad3.getRawButton(1)){
       // TODO: make motor lower (A Button)
-      elevatorMotor.set(-0.1);
+      elevatorMotor.set(-0.5);
     }
   }
 
