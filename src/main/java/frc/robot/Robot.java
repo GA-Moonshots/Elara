@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
 
 
   // here's a motor i'm declaring here, sorry Mr. A it's not in a command
-  public Jaguar elevatorMotor;
+  public Jaguar elevatorMotor = new Jaguar(ELEVATORPORT);
 
 
   // SENSORS
@@ -180,11 +180,11 @@ public class Robot extends TimedRobot {
 
     while(gamePad3.getRawButton(4)){
       // TODO: make motor raise (Y Button)
-      
+      elevatorMotor.set(0.1);
     }
     while(gamePad3.getRawButton(1)){
       // TODO: make motor lower (A Button)
-      
+      elevatorMotor.set(-0.1);
     }
   }
 
