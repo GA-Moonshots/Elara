@@ -147,6 +147,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    drivymcDriveDriverson.drive.arcadeDrive(0, 0);
+    elevatorMotor.set(0.0);
   }
 
   /**
@@ -180,11 +182,11 @@ public class Robot extends TimedRobot {
 
     while(gamePad3.getRawButton(4)){
       // TODO: make motor raise (Y Button)
-      elevatorMotor.set(0.5);
+      elevatorMotor.set(0.25);
     }
     while(gamePad3.getRawButton(1)){
       // TODO: make motor lower (A Button)
-      elevatorMotor.set(-0.5);
+      elevatorMotor.set(-0.25);
     }
   }
 
