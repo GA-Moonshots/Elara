@@ -32,30 +32,21 @@ import edu.wpi.first.wpilibj.Jaguar;
  */
 public class Robot extends TimedRobot {
 
-  // TODO: move these MAGIC NUMBERS to RobotMap
-  private static int LEFT1PORT = 1;
-  private static int LEFT2PORT = 4;
-  private static int RIGHT1PORT = 3;
-  private static int RIGHT2PORT = 2;
-  private static int ELEVATORPORT = 0;
-
   // declaring buttons!
   public static Joystick gamePad3 = new Joystick(0);
-  Button xButton = new JoystickButton(gamePad3, 3);
-  Button aButton = new JoystickButton(gamePad3, 1);
-  Button bButton = new JoystickButton(gamePad3, 2);
-  Button yButton = new JoystickButton(gamePad3, 4);
-
+  public static Button xButton = new JoystickButton(gamePad3, 3);
+  public static Button aButton = new JoystickButton(gamePad3, 1);
+  public static Button bButton = new JoystickButton(gamePad3, 2);
+  public static Button yButton = new JoystickButton(gamePad3, 4);
 
   // here's a motor i'm declaring here, sorry Mr. A it's not in a command
-  public Jaguar elevatorMotor = new Jaguar(ELEVATORPORT);
-
+  public static Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
 
   // SENSORS
   // TODO: wrap gyro to work w/ SmartDashboard like last year
   public static AnalogGyro gyro = new AnalogGyro(1);
 
-  public static Drive drivymcDriveDriverson = new Drive(LEFT1PORT, LEFT2PORT, RIGHT1PORT, RIGHT2PORT,  gyro);
+  public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
 
   Command m_autonomousCommand;

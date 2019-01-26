@@ -12,15 +12,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
-// TODO: Change back to PIDSubsystem
-public class Drive extends Subsystem {
+public class Drive extends PIDSubsystem {
   
   // TODO: Research MotionProfileStatus
   
   // here's a gyro
-  public AnalogGyro gyro;
+  private AnalogGyro gyro = Robot.gyro;
 
   // here's some motors
   public Jaguar leftMotor1;
@@ -32,20 +33,20 @@ public class Drive extends Subsystem {
   public DifferentialDrive drive;
 
   // grouping the motors
-  SpeedControllerGroup rightSide;
-  SpeedControllerGroup leftSide;
+  public SpeedControllerGroup rightSide;
+  public SpeedControllerGroup leftSide;
 
-  // TODO: PID tuner
+  public double pidTune;
 
-  public Drive(int leftPort1, int leftPort2, int rightPort1, int rightPort2, AnalogGyro g){    
-
-    
+  public Drive(){    
+    // PID STUFF: https://frc-pdr.readthedocs.io/en/latest/control/using_WPILIB's_pid_controller.html#implementing-a-basic-pid-control
+    super("Drive", 1.0, 0.0, 0.0); // kick on the PIDSubsystem parent init
 
     // linking motors to ports
-    leftMotor1 = new Jaguar(leftPort1);
-    leftMotor2 = new Jaguar(leftPort2);
-    rightMotor1 = new Jaguar(rightPort1);
-    rightMotor2 = new Jaguar(rightPort2);
+    leftMotor1 = new Jaguar(RobotMap.LEFT1PORT);
+    leftMotor2 = new Jaguar(RobotMap.LEFT2PORT);
+    rightMotor1 = new Jaguar(RobotMap.RIGHT1PORT);
+    rightMotor2 = new Jaguar(RobotMap.RIGHT2PORT);
     
     // setting up the motor groups
     rightSide = new SpeedControllerGroup(rightMotor1, rightMotor2);
@@ -54,16 +55,30 @@ public class Drive extends Subsystem {
     // making differential drive
     drive = new DifferentialDrive(rightSide, leftSide);
 
-    // TODO: still gotta enable deadband elimination!
-    // even though we did it in Robot.java...?
-
-    // TODO: config pid loop
+    // config pid loop
+    pidTune = 0;
+    double outRange = 0.9;
+    this.setInputRange(-180, 180);
+    this.setOutputRange(-outRange, outRange);
+    this.getPIDController().setContinuous(true);
+    this.setPercentTolerance(1);
+    this.setAbsoluteTolerance(5.0);  // how close is good enough?
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return gyro.getAngle();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    
   }
 
   }
