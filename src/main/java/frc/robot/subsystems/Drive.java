@@ -55,6 +55,7 @@ public class Drive extends PIDSubsystem {
     // making differential drive
     drive = new DifferentialDrive(rightSide, leftSide);
 
+
     // config pid loop
     pidTune = 0;
     double outRange = 0.9;
@@ -78,7 +79,7 @@ public class Drive extends PIDSubsystem {
 
   @Override
   protected void usePIDOutput(double output) {
-    
+    this.pidTune = output;
   }
 
   }
