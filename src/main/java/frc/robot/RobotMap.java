@@ -22,6 +22,8 @@ public class RobotMap {
   public static int RIGHT1PORT = 3;
   public static int RIGHT2PORT = 2;
   public static int ELEVATORPORT = 0;
+
+  public static double ANGLE_TOLERANCE = 5.0;
   
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

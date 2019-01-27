@@ -9,13 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 /**
  * An example command.  You can replace me with your own command.
  */
 public class OneEightyTurn extends Command {
 
   private double target;
+  private DifferentialDrive drive = Robot.drivymcDriveDriverson.drive;
 
   public OneEightyTurn() {
     // Use requires() here to declare subsystem dependencies
@@ -26,21 +29,21 @@ public class OneEightyTurn extends Command {
   @Override
   protected void initialize() {
     target = Robot.gyro.getAngle() + 180;
+    Robot.drivymcDriveDriverson.setSetpoint(target);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(0, .5);
-      if(Math.abs(Robot.gyro.getAngle() - target) < 5){
-        end();
-      }
+    // if we triggered a setPoint
+    
+    drive.arcadeDrive(0, .5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.gyro.getAngle() - target) < 5;
+    return Math.abs(Robot.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
   }
 
   // Called once after isFinished returns true
