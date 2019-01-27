@@ -150,11 +150,6 @@ public class Robot extends TimedRobot {
     // UPDATE DASHBOARD
     SmartDashboard.putNumber("Gyro",gyro.getAngle());
 
-    // BUTTONS
-    OI.xButton.whenPressed(new Drive180Command());
-    OI.yButton.whenPressed(new LiftRaiseCommand());
-    OI.aButton.whenPressed(new LiftLowerCommand());
-
     // GO GO DRIVE COMMAND
     Command youSeeMeRollin = new DriveCommand();
 
