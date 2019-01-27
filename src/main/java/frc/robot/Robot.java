@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.OneEightyTurn;
+import frc.robot.commands.Drive180Command;
+import frc.robot.commands.DriveCommand;
+import frc.robot.commands.LiftRaiseCommand;
+import frc.robot.commands.LiftLowerCommand;
 import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Jaguar;
+import frc.robot.subsystems.Elevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,19 +32,18 @@ import edu.wpi.first.wpilibj.Jaguar;
  */
 public class Robot extends TimedRobot {
 
-  // declaring buttons!
-  public static Joystick gamePad3 = new Joystick(0);
-  public static Button xButton = new JoystickButton(gamePad3, 3);
-  public static Button aButton = new JoystickButton(gamePad3, 1);
-  public static Button bButton = new JoystickButton(gamePad3, 2);
-  public static Button yButton = new JoystickButton(gamePad3, 4);
 
-  // here's a motor i'm declaring here, sorry Mr. A it's not in a command
-  public static Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
+  /**
+	 *
+	 */
+	
+	private static final DriveCommand DRIVE_COMMAND = new DriveCommand();
 
-  // SENSORS
+// SENSORS
   // TODO: wrap gyro to work w/ SmartDashboard like last year
   public static AnalogGyro gyro = new AnalogGyro(1);
+
+  public static Elevator elevator = new Elevator();
 
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
@@ -59,12 +58,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new OneEightyTurn());
+    m_chooser.setDefaultOption("Default Auto", new Drive180Command());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
     // HANG BUTTONS
-    xButton.whenPressed(new OneEightyTurn());
+    
   }
 
   /**
@@ -139,7 +138,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     drivymcDriveDriverson.drive.arcadeDrive(0, 0);
-    elevatorMotor.set(0.0);
   }
 
   /**
@@ -149,36 +147,17 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-   SmartDashboard.putNumber("Gyro",gyro.getAngle());
+    // UPDATE DASHBOARD
+    SmartDashboard.putNumber("Gyro",gyro.getAngle());
 
-    // TODO: Move this logic to a drive command similar to:
-    // https://github.com/BHSSFRC/3494_2018_repo/blob/master/src/main/java/org/usfirst/frc/team3494/robot/commands/drive/Drive.java
+    // BUTTONS
+    OI.xButton.whenPressed(new Drive180Command());
+    OI.yButton.whenPressed(new LiftRaiseCommand());
+    OI.aButton.whenPressed(new LiftLowerCommand());
 
-    //MANUAL DEAD ZONE
-    double dead = 0.15;
+    // GO GO DRIVE COMMAND
+    Command youSeeMeRollin = new DriveCommand();
 
-    double valueleftx = gamePad3.getRawAxis(0);
-    double valuelefty = gamePad3.getRawAxis(1);
-
-    if(Math.abs(valueleftx) < dead){
-      valueleftx = 0;
-    }
-    if(Math.abs(valuelefty) < dead){
-      valuelefty = 0;
-    }
-
-    xButton.whenPressed(new OneEightyTurn());
-
-    drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
-
-    while(gamePad3.getRawButton(4)){
-      // TODO: make motor raise (Y Button)
-      elevatorMotor.set(0.25);
-    }
-    while(gamePad3.getRawButton(1)){
-      // TODO: make motor lower (A Button)
-      elevatorMotor.set(-0.25);
-    }
   }
 
   /**

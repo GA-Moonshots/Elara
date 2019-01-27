@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
 public class Drive extends PIDSubsystem {
@@ -70,6 +71,7 @@ public class Drive extends PIDSubsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DriveCommand());
   }
 
   @Override

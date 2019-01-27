@@ -9,20 +9,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Elevator;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class DriveCommand extends Command {
+public class LiftLowerCommand extends Command {
 
-  private DifferentialDrive drive = Robot.drivymcDriveDriverson.drive;
+  private Elevator elevator = Robot.elevator;
 
-  public DriveCommand() {
+  public LiftLowerCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.drivymcDriveDriverson);
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
@@ -34,40 +34,27 @@ public class DriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    //MANUAL DEAD ZONE
-    double dead = 0.15;
-
-    double valueleftx = OI.gamePad3.getRawAxis(0);
-    double valuelefty = OI.gamePad3.getRawAxis(1);
-
-    if(Math.abs(valueleftx) < dead){
-      valueleftx = 0;
-    }
-    if(Math.abs(valuelefty) < dead){
-      valuelefty = 0;
-    }    
-
-    drive.arcadeDrive(valuelefty, valueleftx); 
+    // if we triggered a setPoint
+    elevator.elevatorMotor.set(0.25);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return !OI.aButton.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    drive.arcadeDrive(0,0);
+    elevator.elevatorMotor.set(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    drive.arcadeDrive(0,0);
+    elevator.elevatorMotor.set(0.0);
   }
 
 }

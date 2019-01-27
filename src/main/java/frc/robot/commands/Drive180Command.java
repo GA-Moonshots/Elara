@@ -15,12 +15,12 @@ import frc.robot.RobotMap;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class OneEightyTurn extends Command {
+public class Drive180Command extends Command {
 
   private double target;
   private DifferentialDrive drive = Robot.drivymcDriveDriverson.drive;
 
-  public OneEightyTurn() {
+  public Drive180Command() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.drivymcDriveDriverson);
   }
