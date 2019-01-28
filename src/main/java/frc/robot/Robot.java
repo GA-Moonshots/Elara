@@ -9,17 +9,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Drive180Command;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.LiftRaiseCommand;
-import frc.robot.commands.LiftLowerCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 
@@ -31,17 +26,6 @@ import frc.robot.subsystems.Elevator;
  * project.
  */
 public class Robot extends TimedRobot {
-
-
-  /**
-	 *
-	 */
-	
-	private static final DriveCommand DRIVE_COMMAND = new DriveCommand();
-
-// SENSORS
-  // TODO: wrap gyro to work w/ SmartDashboard like last year
-  public static AnalogGyro gyro = new AnalogGyro(1);
 
   public static Elevator elevator = new Elevator();
 
@@ -76,6 +60,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+   
   }
 
   /**
@@ -137,7 +122,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    // TODO: Move to all-stop command that halts all motors
     drivymcDriveDriverson.drive.arcadeDrive(0, 0);
+    drivymcDriveDriverson.gyro.reset();
   }
 
   /**
@@ -146,12 +133,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-
-    // UPDATE DASHBOARD
-    SmartDashboard.putNumber("Gyro",gyro.getAngle());
-
-    // GO GO DRIVE COMMAND
-    Command youSeeMeRollin = new DriveCommand();
 
   }
 

@@ -15,14 +15,14 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
-import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 public class Drive extends PIDSubsystem {
   
   // TODO: Research MotionProfileStatus
   
   // here's a gyro
-  private AnalogGyro gyro = Robot.gyro;
+  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   // here's some motors
   public Jaguar leftMotor1;
@@ -42,7 +42,7 @@ public class Drive extends PIDSubsystem {
   public Drive(){    
     // PID STUFF: https://frc-pdr.readthedocs.io/en/latest/control/using_WPILIB's_pid_controller.html#implementing-a-basic-pid-control
     super("Drive", 1.0, 0.0, 0.0); // kick on the PIDSubsystem parent init
-
+    gyro.reset();
     // linking motors to ports
     leftMotor1 = new Jaguar(RobotMap.LEFT1PORT);
     leftMotor2 = new Jaguar(RobotMap.LEFT2PORT);

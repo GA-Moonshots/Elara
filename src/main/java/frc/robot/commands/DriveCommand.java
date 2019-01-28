@@ -8,17 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PIDCommand;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 /**
  * Responding to motor control. Runs infinitely
  */
 public class DriveCommand extends Command {
-
-  private DifferentialDrive drive = Robot.drivymcDriveDriverson.drive;
 
   public DriveCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -48,7 +43,7 @@ public class DriveCommand extends Command {
       valuelefty = 0;
     }    
 
-    drive.arcadeDrive(valuelefty, valueleftx); 
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -60,14 +55,14 @@ public class DriveCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    drive.arcadeDrive(0,0);
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    drive.arcadeDrive(0,0);
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
   }
 
 }
