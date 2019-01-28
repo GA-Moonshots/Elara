@@ -44,7 +44,7 @@ public class LiftRaiseCommand extends Command {
   @Override
   protected boolean isFinished() {
     //return !OI.yButton.get();
-    return !OI.gamePad3.getRawButton(RobotMap.yBUTTON_NUM);
+    return !OI.xbox.getRawButton(RobotMap.yBUTTON_NUM);
   }
 
   // Called once after isFinished returns true

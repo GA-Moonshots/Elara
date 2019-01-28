@@ -33,8 +33,8 @@ public class DriveCommand extends Command {
     //MANUAL DEAD ZONE
     double dead = 0.15;
 
-    double valueleftx = OI.gamePad3.getRawAxis(0);
-    double valuelefty = OI.gamePad3.getRawAxis(1);
+    double valueleftx = OI.xbox.getRawAxis(0);
+    double valuelefty = OI.xbox.getRawAxis(1);
 
     if(Math.abs(valueleftx) < dead){
       valueleftx = 0;
@@ -43,7 +43,7 @@ public class DriveCommand extends Command {
       valuelefty = 0;
     }    
 
-    Robot.drivymcDriveDriverson.drive.arcadeDrive(valuelefty, valueleftx); 
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(valuelefty, -valueleftx); 
   }
 
   // Make this return true when this Command no longer needs to run execute()

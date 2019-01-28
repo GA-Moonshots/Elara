@@ -22,6 +22,7 @@ public class RobotMap {
   public static int aBUTTON_NUM = 1;
   public static int bBUTTON_NUM = 2;
   public static int yBUTTON_NUM = 4;
+  public static int LEFTSTICKCLICK_NUM = 9;
 
   public static int LEFT1PORT = 1;
   public static int LEFT2PORT = 4;
@@ -29,7 +30,7 @@ public class RobotMap {
   public static int RIGHT2PORT = 2;
   public static int ELEVATORPORT = 0;
 
-  public static double ANGLE_TOLERANCE = 5.0;
+  public static double ANGLE_TOLERANCE = 2.0;
   
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

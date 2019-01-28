@@ -10,7 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.Drive180Command;
+import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveToAngle;
 import frc.robot.commands.LiftLowerCommand;
 import frc.robot.commands.LiftRaiseCommand;
 
@@ -32,11 +33,12 @@ public class OI {
   // commands the same as any other Button.
 
   // declaring buttons!
-  public static Joystick gamePad3 = new Joystick(0);
-  public static Button xButton = new JoystickButton(gamePad3, 3);
-  public static Button aButton = new JoystickButton(gamePad3, 1);
-  public static Button bButton = new JoystickButton(gamePad3, 2);
-  public static Button yButton = new JoystickButton(gamePad3, 4);
+  public static Joystick xbox = new Joystick(0);
+  public static Button xButton = new JoystickButton(xbox, 3);
+  public static Button aButton = new JoystickButton(xbox, 1);
+  public static Button bButton = new JoystickButton(xbox, 2);
+  public static Button yButton = new JoystickButton(xbox, 4);
+  public static Button leftStickClick = new JoystickButton(xbox, 9);
   
   public OI(){
     //// TRIGGERING COMMANDS WITH BUTTONS
@@ -55,9 +57,10 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     // BUTTONS
-    xButton.whenPressed(new Drive180Command());
+    xButton.whenPressed(new DriveToAngle(180));
     yButton.whenPressed(new LiftRaiseCommand());
     aButton.whenPressed(new LiftLowerCommand());
+    leftStickClick.whenPressed(new DriveCommand());
   }
 
   
