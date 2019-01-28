@@ -8,15 +8,17 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
+
+/**
+ * * Instantiates the drive system with a gyro
+ */
 public class Drive extends PIDSubsystem {
   
   // TODO: Research MotionProfileStatus
@@ -71,7 +73,7 @@ public class Drive extends PIDSubsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveCommand());
+    setDefaultCommand(new DriveCommand()); // THIS IS HOW WE DRIVE THE ROBOT
   }
 
   @Override
