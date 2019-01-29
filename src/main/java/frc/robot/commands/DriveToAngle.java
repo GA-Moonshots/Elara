@@ -40,19 +40,36 @@ public class DriveToAngle extends Command {
     // NOTE: Negative return values will increase the gyro's value
 
     double maxPowerAllowed = 0.7; // cap the power 
-    double minPowerNeeded = 0.3; // added to output
-    double error = target - drive.gyro.getAngle(); // distance we have left to turn
-    if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
-    if(check > 10){  // if we've been within tolerance for a while
-        return 0;
-    } else if(error > 0){  // we haven't overshot our target
-      double proportion = error / requestedRotation;
-      double output = maxPowerAllowed * proportion;
-      if(output < minPowerNeeded) return -minPowerNeeded;
-      else return -output; 
+    double minPowerNeeded = 0.2; // added to output
+    if (requestedRotation > 0){
+      double error = target - drive.gyro.getAngle(); // distance we have left to turn
+      if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
+      if(check > 10){  // if we've been within tolerance for a while
+          return 0;
+      } else if(error > 0){  // we haven't overshot our target
+        double proportion = error / requestedRotation;
+        double output = maxPowerAllowed * proportion;
+        if(output < minPowerNeeded) return -minPowerNeeded;
+        else return -output; 
+      }
+      else {  // we've overshot our target and need to settle back in
+        return minPowerNeeded;
     }
-    else {  // we've overshot our target and need to settle back in
-      return minPowerNeeded;
+  }
+    else{
+        double error = drive.gyro.getAngle() - target; // distance we have left to turn
+      if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
+      if(check > 10){  // if we've been within tolerance for a while
+          return 0;
+      } else if(error > 0){  // we haven't overshot our target
+        double proportion = error / requestedRotation;
+        double output = maxPowerAllowed * proportion;
+        if(output < minPowerNeeded) return minPowerNeeded;
+        else return output; 
+      }
+      else {  // we've overshot our target and need to settle back in
+        return -minPowerNeeded;
+      }
     }
   }
 

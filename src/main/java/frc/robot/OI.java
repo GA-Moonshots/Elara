@@ -57,6 +57,7 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     // BUTTONS
+    bButton.whenPressed(new DriveToAngle(-90));
     xButton.whenPressed(new DriveToAngle(180));
     yButton.whenPressed(new LiftRaiseCommand());
     aButton.whenPressed(new LiftLowerCommand());
