@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -20,9 +21,16 @@ public class Elevator extends Subsystem {
   // here's a motor i'm declaring here, sorry Mr. A it's not in a command
   public Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
 
+  public Encoder sampleEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+
+  public Elevator(){
+    sampleEncoder.setDistancePerPulse(0);
   }
 }
