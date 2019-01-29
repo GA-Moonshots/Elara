@@ -40,7 +40,7 @@ public class DriveToAngle extends Command {
     // NOTE: Negative return values will increase the gyro's value
 
     double maxPowerAllowed = 0.7; // cap the power 
-    double minPowerNeeded = 0.2; // added to output
+    double minPowerNeeded = 0.3; // added to output
     if (requestedRotation > 0){
       double error = target - drive.gyro.getAngle(); // distance we have left to turn
       if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
@@ -54,8 +54,8 @@ public class DriveToAngle extends Command {
       }
       else {  // we've overshot our target and need to settle back in
         return minPowerNeeded;
+      }
     }
-  }
     else{
         double error = drive.gyro.getAngle() - target; // distance we have left to turn
       if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
