@@ -66,7 +66,7 @@ public class DriveToAngle extends Command {
       if(check > 10){  // if we've been within tolerance for a while
           return 0;
       } else if(error > 0){  // we haven't overshot our target
-        double proportion = error / requestedRotation;
+        double proportion = error / Math.abs(requestedRotation);
         double output = maxPowerAllowed * proportion;
         if(output < minPowerNeeded) return minPowerNeeded;
         else return output; 
