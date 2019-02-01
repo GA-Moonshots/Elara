@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 
 /**
@@ -25,6 +26,7 @@ public class Drive extends PIDSubsystem {
   
   // here's a gyro
   public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  public AnalogInput ultra = new AnalogInput(0);
 
   // here's some motors
   public Jaguar leftMotor1;
