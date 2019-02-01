@@ -10,8 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Drive;
-/**
+import frc.robot.subsystems.Drive;   
+/**0
+ * 
  * An example command.  You can replace me with your own command.
  */
 public class DriveToAngle extends Command {
@@ -41,6 +42,8 @@ public class DriveToAngle extends Command {
 
     double maxPowerAllowed = 0.7; // cap the power 
     double minPowerNeeded = 0.3; // added to output
+
+    // CLOCKWISE
     if (requestedRotation > 0){
       double error = target - drive.gyro.getAngle(); // distance we have left to turn
       if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
@@ -56,6 +59,7 @@ public class DriveToAngle extends Command {
         return minPowerNeeded;
       }
     }
+    // COUNTER-CLOCKWISE
     else{
         double error = drive.gyro.getAngle() - target; // distance we have left to turn
       if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
@@ -64,8 +68,8 @@ public class DriveToAngle extends Command {
       } else if(error > 0){  // we haven't overshot our target
         double proportion = error / requestedRotation;
         double output = maxPowerAllowed * proportion;
-        if(Math.abs(output) < minPowerNeeded) return minPowerNeeded;
-        else return -output; 
+        if(output < minPowerNeeded) return minPowerNeeded;
+        else return output; 
       }
       else {  // we've overshot our target and need to settle back in
         return -minPowerNeeded;
