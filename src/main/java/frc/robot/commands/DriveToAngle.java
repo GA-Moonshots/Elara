@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Drive;   
-/**0
+/**
  * 
  * An example command.  You can replace me with your own command.
  */
@@ -37,47 +37,45 @@ public class DriveToAngle extends Command {
     check = 0;
   }
 
-  private double notReallyPID(){
-    // NOTE: Negative return values will increase the gyro's value
-
-    double maxPowerAllowed = 0.7; // cap the power 
-    double minPowerNeeded = 0.3; // added to output
-
-    // CLOCKWISE
-    if (requestedRotation > 0){
-      double error = target - drive.gyro.getAngle(); // distance we have left to turn
-      if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
-      if(check > 10){  // if we've been within tolerance for a while
-          return 0;
-      } else if(error > 0){  // we haven't overshot our target
-        double proportion = error / requestedRotation;
-        double output = maxPowerAllowed * proportion;
-        if(output < minPowerNeeded) return -minPowerNeeded;
-        else return -output; 
-      }
-      else {  // we've overshot our target and need to settle back in
-        return minPowerNeeded;
-      }
-    }
-    // COUNTER-CLOCKWISE
-    else{
-        double error = drive.gyro.getAngle() - target; // distance we have left to turn
-      if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
-      if(check > 10){  // if we've been within tolerance for a while
-          return 0;
-      } else if(error > 0){  // we haven't overshot our target
-        double proportion = error / Math.abs(requestedRotation);
-        double output = maxPowerAllowed * proportion;
-        if(output < minPowerNeeded) return minPowerNeeded;
-        else return output; 
-      }
-      else {  // we've overshot our target and need to settle back in
-        return -minPowerNeeded;
-      }
-    }
+  private double notReallyPID() {
+    //////// NOTE: Negative return values will increase the gyro's value. //////
+	  
+    // Cap the power at `0.7`.
+    double maxPowerAllowed = 0.7; 
+    // Added to the output.
+    double minPowerNeeded = 0.3; 
+	////////////////////////////////////////////////////////
+	// Make proportion global in the scoe of notReallyPID().
+	double proportion;
+	// Do output math outside of the statements.
+	double output = maxPowerAllowed * proportion;
+	// Get the distance that we have left to turn.
+	double error = target - drive.gyro.getAngle();
+	////////////////////////////////////////////////////////
+	if (Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++;
+	// If we've been within tolerance for a while.
+	if (check > 10) return 0;
+	////////////////////////////////////////////////////////
+	// Clockwise logic
+	if (requestedRotation > 0 && error > 0) {
+		proportion = error / requestedRotation;
+		if (output < minPowerNeeded) return -minPowerNeeded;
+		else return -output;
+	}
+	// We've overshot our target and need to settle back.
+	else return -minPowerNeeded;
+	////////////////////////////////////////////////////////
+	// Counter-Clockwise logic
+	if (requestedRotation <= 0 && error > 0) {
+		proportion = error / Math.abs(requestedRotation);
+		if (output < minPowerNeeded) return minPowerNeeded;
+		else return output;
+	}
+	// We've overshot our target and need to settle back
+	else return -minPowerNeeded;
   }
 
-  // Called repeatedly when this Command is scheduled to run
+  // Called repeatedly when this Command is scheduled to run.
   @Override
   protected void execute() {
     // if we triggered a setPoint
@@ -104,5 +102,4 @@ public class DriveToAngle extends Command {
   protected void interrupted() {
     Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
   }
-
 }
