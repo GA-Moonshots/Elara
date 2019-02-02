@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,6 +23,8 @@ public class Elevator extends Subsystem {
   public Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
 
   public Encoder sampleEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+  public DigitalInput sampleInput = new DigitalInput(0);
+  
 
   @Override
   public void initDefaultCommand() {

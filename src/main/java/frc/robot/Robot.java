@@ -59,6 +59,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+    // TEST SENSORS
+    SmartDashboard.putBoolean("Elevator trigger", elevator.sampleInput.get());
     SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
    
   }
