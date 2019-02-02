@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-    SmartDashboard.putBoolean("Elevator trigger", Robot.getEncoders().getLeftPositionIn(););
+    SmartDashboard.putBoolean("Elevator trigger", Robot.getEncoders().getLeftPositionIn());
     SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
    
   }
