@@ -23,7 +23,7 @@ public class Elevator extends Subsystem {
   public Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
 
   public Encoder sampleEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-  //public DigitalInput sampleInput;
+
   
 
   @Override

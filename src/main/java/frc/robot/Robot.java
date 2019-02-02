@@ -9,6 +9,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,6 +28,8 @@ import frc.robot.subsystems.Elevator;
 public class Robot extends TimedRobot {
 
   public static Elevator elevator = new Elevator();
+  
+  public DigitalInput sampleInput = new DigitalInput(4);
 
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
@@ -59,7 +62,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-    SmartDashboard.putNumber("Elevator trigger", elevator.sampleEncoder.get());
+    SmartDashboard.putBoolean("Trigger", sampleInput.get());
+    SmartDashboard.putNumber("Elevator encoder", elevator.sampleEncoder.get());
     SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
    
   }
