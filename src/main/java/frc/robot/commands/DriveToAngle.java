@@ -47,8 +47,6 @@ public class DriveToAngle extends Command {
 	////////////////////////////////////////////////////////
 	// Make proportion global in the scoe of notReallyPID().
 	double proportion;
-	// Do output math outside of the statements.
-	double output = maxPowerAllowed * proportion;
 	// Get the distance that we have left to turn.
 	double error = target - drive.gyro.getAngle();
 	////////////////////////////////////////////////////////
@@ -59,20 +57,20 @@ public class DriveToAngle extends Command {
 	// Clockwise logic
 	if (requestedRotation > 0 && error > 0) {
 		proportion = error / requestedRotation;
-		if (output < minPowerNeeded) return -minPowerNeeded;
-		else return -output;
+		if ((maxPowerAllowed * proportion) < minPowerNeeded) return -minPowerNeeded;
+		else return -(maxPowerAllowed * proportion);
 	}
 	// We've overshot our target and need to settle back.
-	else return -minPowerNeeded;
+	else if (requestedRotation > 0 && error < 0) return -minPowerNeeded;
 	////////////////////////////////////////////////////////
 	// Counter-Clockwise logic
-	if (requestedRotation <= 0 && error > 0) {
+	else if (requestedRotation <= 0 && error > 0) {
 		proportion = error / Math.abs(requestedRotation);
-		if (output < minPowerNeeded) return minPowerNeeded;
-		else return output;
+		if ((maxPowerAllowed * proportion) < minPowerNeeded) return minPowerNeeded;
+		else return maxPowerAllowed * proportion;
 	}
 	// We've overshot our target and need to settle back
-	else return -minPowerNeeded;
+	else return minPowerNeeded;
   }
 
   // Called repeatedly when this Command is scheduled to run.
