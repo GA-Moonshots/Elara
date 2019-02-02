@@ -40,9 +40,9 @@ public class DriveToAngle extends Command {
   private double notReallyPID() {
     //////// NOTE: Negative return values will increase the gyro's value. //////
 	  
-	// Cap the power at `0.7`.
+    // Cap the power at `0.7`.
     double maxPowerAllowed = 0.7; 
-	// Added to the output.
+    // Added to the output.
     double minPowerNeeded = 0.3; 
 	////////////////////////////////////////////////////////
 	// Make proportion global in the scoe of notReallyPID().
