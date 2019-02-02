@@ -44,8 +44,6 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new DriveCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
-    // HANG BUTTONS
     
   }
 
@@ -61,7 +59,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-    SmartDashboard.putBoolean("Elevator trigger", elevator.sampleInput.get());
+    //SmartDashboard.putBoolean("Elevator trigger", elevator.sampleInput.get());
     SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
    
   }
