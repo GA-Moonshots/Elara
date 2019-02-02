@@ -48,7 +48,7 @@ public class DriveToAngle extends Command {
 	// Make proportion global in the scoe of notReallyPID().
 	double proportion;
 	// Do output math outside of the statements.
-	double output = macPowerAllowed * proportion
+	double output = maxPowerAllowed * proportion
 	// Get the distance that we have left to turn.
 	double error = target - drive.gyro.getAngle();
 	////////////////////////////////////////////////////////
