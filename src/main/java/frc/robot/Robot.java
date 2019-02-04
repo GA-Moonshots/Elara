@@ -28,8 +28,6 @@ import frc.robot.subsystems.Elevator;
 public class Robot extends TimedRobot {
 
   public static Elevator elevator = new Elevator();
-  
-  public DigitalInput sampleInput = new DigitalInput(4);
 
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
@@ -62,7 +60,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-    SmartDashboard.putBoolean("Trigger", sampleInput.get());
+    SmartDashboard.putBoolean("Up", elevator.elevatorLimitUp.get());
+    SmartDashboard.putBoolean("Down", elevator.elevatorLimitDown.get());
     SmartDashboard.putNumber("Elevator encoder", elevator.sampleEncoder.get());
     SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage());
    
