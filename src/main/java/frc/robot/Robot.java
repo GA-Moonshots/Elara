@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
     // TEST SENSORS
     SmartDashboard.putBoolean("Trigger", sampleInput.get());
     SmartDashboard.putNumber("Elevator encoder", elevator.sampleEncoder.get());
-    SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
+    SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage());
    
   }
 
