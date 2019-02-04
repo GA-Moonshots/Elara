@@ -28,6 +28,8 @@ import frc.robot.subsystems.Elevator;
 public class Robot extends TimedRobot {
 
   public static Elevator elevator = new Elevator();
+  public static DigitalInput elevatorLimitUp;
+  public static DigitalInput elevatorLimitDown;
 
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
@@ -45,7 +47,8 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new DriveCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    
+    elevatorLimitUp = new DigitalInput(RobotMap.DIO_LIMITUP);
+    elevatorLimitDown = new DigitalInput(RobotMap.DIO_LIMITDOWN);
   }
 
   /**
@@ -60,8 +63,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-    SmartDashboard.putBoolean("Up", elevator.elevatorLimitUp.get());
-    SmartDashboard.putBoolean("Down", elevator.elevatorLimitDown.get());
+    SmartDashboard.putBoolean("Up", elevatorLimitUp.get());
+    SmartDashboard.putBoolean("Down", elevatorLimitDown.get());
     SmartDashboard.putNumber("Elevator encoder", elevator.sampleEncoder.get());
     SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
    
