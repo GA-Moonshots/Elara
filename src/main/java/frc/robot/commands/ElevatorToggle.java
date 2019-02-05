@@ -16,11 +16,11 @@ import frc.robot.subsystems.Elevator;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class LiftLowerCommand extends Command {
+public class ElevatorToggle extends Command {
 
   private Elevator elevator = Robot.elevator;
 
-  public LiftLowerCommand() {
+  public ElevatorToggle() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.elevator);
   }
@@ -28,6 +28,7 @@ public class LiftLowerCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    if(!elevator.isUp) this.cancel();
     //Robot.drivymcDriveDriverson.drive.arcadeDrive(Robot.m_oi., target);
   }
 
@@ -35,7 +36,7 @@ public class LiftLowerCommand extends Command {
   @Override
   protected void execute() {
     // if we triggered a setPoint
-    elevator.elevatorMotor.set(0.25);
+    elevator.elevatorMotor.set(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,6 +49,7 @@ public class LiftLowerCommand extends Command {
   @Override
   protected void end() {
     elevator.elevatorMotor.set(0.0);
+    elevator.isUp = false;
   }
 
   // Called when another command which requires one or more of the same

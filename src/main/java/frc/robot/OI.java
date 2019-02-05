@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.DriveToAngle;
-import frc.robot.commands.LiftLowerCommand;
-import frc.robot.commands.LiftRaiseCommand;
+import frc.robot.commands.ElevatorDown;
+import frc.robot.commands.ElevatorUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -59,8 +59,8 @@ public class OI {
     // BUTTONS
     bButton.whenPressed(new DriveToAngle(-90));
     xButton.whenPressed(new DriveToAngle(180));
-    yButton.whenPressed(new LiftRaiseCommand());
-    aButton.whenPressed(new LiftLowerCommand());
+    yButton.whenPressed(new ElevatorUp());
+    aButton.whenPressed(new ElevatorToggle());
     leftStickClick.whenPressed(new DriveCommand());
   }
 

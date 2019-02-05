@@ -21,9 +21,20 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   // here's a motor i'm declaring here, sorry Mr. A it's not in a command
   public Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
-
+  // for the love of God start the elevator down
   public Encoder sampleEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+  public DigitalInput elevatorLimitUp = new DigitalInput(RobotMap.DIO_LIMITUP);
+  public DigitalInput elevatorLimitDown = new DigitalInput(RobotMap.DIO_LIMITDOWN);
 
+
+  /**
+   * Tracks elevator's porition relative to two limit switches
+   */
+  public enum ElevatorPosition {
+    ABOVE, BETWEEN, BELOW
+  }
+
+  public ElevatorPosition position = ElevatorPosition.BELOW;
 
   @Override
   public void initDefaultCommand() {
