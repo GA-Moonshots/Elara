@@ -44,15 +44,15 @@ public class DriveToAngle extends Command {
    * Calculates error
    * output is the opposite value of error
    * @return output of movement
-   * @author Creds: Emil Hayek, Robert Hayek
+   * @author Creds: Robert Hayek
    */
   private double notReallyPID() {
     // NOTE: Negative return values will increase the gyro's value
     double maxPowerAllowed = 0.7; // cap the power
-    double minPowerNeeded = 0.3; // added to output
+    //double minPowerNeeded = 0.3; // added to output
     //Logic
     double error = -(requestedRotation - target);
-    double output = minPowerNeeded  + Math.abs(error / 180) * maxPowerAllowed;
+    double output = Math.abs(error / 180) * maxPowerAllowed;
     if (error > 0) return output;
     else return -output;
 
