@@ -10,10 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Drive;   
+import frc.robot.subsystems.Drive;
+
 /**
+ * Drive to an angle comand
  * 
- * An example command.  You can replace me with your own command.
+ * @author Moonshots Software Team
  */
 public class DriveToAngle extends Command {
 
@@ -37,44 +39,23 @@ public class DriveToAngle extends Command {
     check = 0;
   }
 
+  /**
+   * Using target, requestedRotation
+   * Calculates error
+   * output is the opposite value of error
+   * @return output of movement
+   * @author Creds: Emil Hayek, Robert Hayek
+   */
   private double notReallyPID() {
- // NOTE: Negative return values will increase the gyro's value
+    // NOTE: Negative return values will increase the gyro's value
+    double maxPowerAllowed = 0.7; // cap the power
+    double minPowerNeeded = 0.3; // added to output
+    //Logic
+    double error = -(requestedRotation - target);
+    double output = minPowerNeeded  + Math.abs(error / 180) * maxPowerAllowed;
+    if (error > 0) return output;
+    else return -output;
 
- double maxPowerAllowed = 0.7; // cap the power 
- double minPowerNeeded = 0.3; // added to output
-
- // CLOCKWISE
- if (requestedRotation > 0){
-   double error = target - drive.gyro.getAngle(); // distance we have left to turn
-   if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
-   if(check > 10){  // if we've been within tolerance for a while
-       return 0;
-   } else if(error > 0){  // we haven't overshot our target
-     double proportion = error / requestedRotation;
-     double output = maxPowerAllowed * proportion;
-     if(output < minPowerNeeded) return -minPowerNeeded;
-     else return -output; 
-   }
-   else {  // we've overshot our target and need to settle back in
-     return minPowerNeeded;
-   }
- }
- // COUNTER-CLOCKWISE
- else{
-     double error = drive.gyro.getAngle() - target; // distance we have left to turn
-   if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
-   if(check > 10){  // if we've been within tolerance for a while
-       return 0;
-   } else if(error > 0){  // we haven't overshot our target
-     double proportion = error / Math.abs(requestedRotation);
-     double output = maxPowerAllowed * proportion;
-     if(output < minPowerNeeded) return minPowerNeeded;
-     else return output; 
-   }
-   else {  // we've overshot our target and need to settle back in
-     return -minPowerNeeded;
-   }
-  }
   }
 
   // Called repeatedly when this Command is scheduled to run.
@@ -87,14 +68,14 @@ public class DriveToAngle extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.drivymcDriveDriverson.leftSide.get() == 0 &&
-     Math.abs(drive.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
+    return Robot.drivymcDriveDriverson.leftSide.get() == 0
+        && Math.abs(drive.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    drive.drive.arcadeDrive(0,0);
+    drive.drive.arcadeDrive(0, 0);
     check = 0;
   }
 
@@ -102,6 +83,6 @@ public class DriveToAngle extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(0, 0);
   }
 }
