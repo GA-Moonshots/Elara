@@ -47,15 +47,43 @@ public class DriveToAngle extends Command {
    * @author Creds: Robert Hayek
    */
   private double notReallyPID() {
-    // NOTE: Negative return values will increase the gyro's value
-    double maxPowerAllowed = 0.7; // cap the power
-    //double minPowerNeeded = 0.3; // added to output
-    //Logic
-    double error = -(requestedRotation - target);
-    double output = Math.abs(error / 180) * maxPowerAllowed;
-    if (error > 0) return output;
-    else return -output;
-
+      // NOTE: Negative return values will increase the gyro's value
+  
+      double maxPowerAllowed = 0.7; // cap the power 
+      double minPowerNeeded = 0.3; // added to output
+  
+      // CLOCKWISE
+      if (requestedRotation > 0){
+        double error = target - drive.gyro.getAngle(); // distance we have left to turn
+        if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
+        if(check > 10){  // if we've been within tolerance for a while
+            return 0;
+        } else if(error > 0){  // we haven't overshot our target
+          double proportion = error / requestedRotation;
+          double output = maxPowerAllowed * proportion;
+          if(output < minPowerNeeded) return -minPowerNeeded;
+          else return -output; 
+        }
+        else {  // we've overshot our target and need to settle back in
+          return minPowerNeeded;
+        }
+      }
+      // COUNTER-CLOCKWISE
+      else{
+          double error = drive.gyro.getAngle() - target; // distance we have left to turn
+        if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++; 
+        if(check > 10){  // if we've been within tolerance for a while
+            return 0;
+        } else if(error > 0){  // we haven't overshot our target
+          double proportion = error / Math.abs(requestedRotation);
+          double output = maxPowerAllowed * proportion;
+          if(output < minPowerNeeded) return minPowerNeeded;
+          else return output; 
+        }
+        else {  // we've overshot our target and need to settle back in
+          return -minPowerNeeded;
+        }
+      }
   }
 
   // Called repeatedly when this Command is scheduled to run.
