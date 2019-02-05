@@ -24,7 +24,6 @@ public class Elevator extends Subsystem {
 
   public Encoder sampleEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 
-  
 
   @Override
   public void initDefaultCommand() {

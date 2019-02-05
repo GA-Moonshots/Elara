@@ -30,6 +30,9 @@ public class RobotMap {
   public static int RIGHT2PORT = 2;
   public static int ELEVATORPORT = 0;
 
+  public static int DIO_LIMITUP = 3;
+  public static int DIO_LIMITDOWN = 4;
+
   public static double ANGLE_TOLERANCE = 2.0;
   
   // If you are using multiple modules, make sure to define both the port
