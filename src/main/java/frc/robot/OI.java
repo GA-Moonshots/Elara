@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import static org.junit.Assume.assumeNoException;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -14,6 +16,8 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.commands.DriveToAngle;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
+import frc.robot.commands.GrabberClose;
+import frc.robot.commands.GrabberOpen;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,6 +42,8 @@ public class OI {
   public static Button aButton = new JoystickButton(xbox, 1);
   public static Button bButton = new JoystickButton(xbox, 2);
   public static Button yButton = new JoystickButton(xbox, 4);
+  public static Button leftBumper = new JoystickButton(xbox, 5);
+  public static Button rightBumper = new JoystickButton(xbox, 6);
   public static Button leftStickClick = new JoystickButton(xbox, 9);
   
   public OI(){
@@ -61,7 +67,10 @@ public class OI {
     xButton.whenPressed(new DriveToAngle(180));
     yButton.whileHeld(new ElevatorUp());
     aButton.whileHeld(new ElevatorDown());
+    leftBumper.whileHeld(new GrabberOpen());
+    rightBumper.whileHeld(new GrabberClose());
     leftStickClick.whenPressed(new DriveCommand());
+
   }
 
   
