@@ -8,11 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Grabber;
 
 public class GrabberOpen extends Command {
   public GrabberOpen() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    // requires(Grabber);
   }
 
   // Called just before this Command runs the first time
