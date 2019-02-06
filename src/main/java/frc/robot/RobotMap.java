@@ -17,13 +17,14 @@ public class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
 
-
+  // BUTTONS
   public static int xBUTTON_NUM = 3;
   public static int aBUTTON_NUM = 1;
   public static int bBUTTON_NUM = 2;
   public static int yBUTTON_NUM = 4;
   public static int LEFTSTICKCLICK_NUM = 9;
 
+  // MOTORS
   public static int LEFT1PORT = 1;
   public static int LEFT2PORT = 4;
   public static int RIGHT1PORT = 3;
@@ -31,6 +32,7 @@ public class RobotMap {
   public static int ELEVATORPORT = 5;
   public static int GRABBERPORT = 0;
 
+  // DIO
   public static int GRABBER_ENC_A = 1;
   public static int GRABBER_ENC_B = 0;
   public static int ELEVATOR_ENC_A = 2;
@@ -38,6 +40,7 @@ public class RobotMap {
   public static int DIO_LIMITUP = 4;
   public static int DIO_LIMITDOWN = 5;
 
+  // MATH CONSTANTS
   public static double ANGLE_TOLERANCE = 2.0;
   
   // If you are using multiple modules, make sure to define both the port
