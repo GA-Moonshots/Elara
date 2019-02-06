@@ -59,7 +59,7 @@ public class DriveToAngle extends Command {
       double minPowerNeeded = 0.3; // added to output
       double output;
       // Calculate the error
-      double error = -(requestedRotation - target);	
+      double error = -(drive.gyro.getAngle() - target);	
       //Calculate the output without minPowerNeeded
       output = (0.4 / 180) * error;
       //Clockwise Logic
