@@ -59,8 +59,8 @@ public class OI {
     // BUTTONS
     bButton.whenPressed(new DriveToAngle(-90));
     xButton.whenPressed(new DriveToAngle(180));
-    yButton.whenPressed(new ElevatorUp());
-    aButton.whenPressed(new ElevatorDown());
+    yButton.whileHeld(new ElevatorUp());
+    aButton.whileHeld(new ElevatorDown());
     leftStickClick.whenPressed(new DriveCommand());
   }
 

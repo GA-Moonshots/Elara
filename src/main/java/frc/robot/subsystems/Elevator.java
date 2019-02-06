@@ -34,7 +34,7 @@ public class Elevator extends Subsystem {
     ABOVE, BETWEEN, BELOW
   }
 
-  public ElevatorPosition position = ElevatorPosition.BELOW;
+  public ElevatorPosition position = ElevatorPosition.BETWEEN;
 
   @Override
   public void initDefaultCommand() {

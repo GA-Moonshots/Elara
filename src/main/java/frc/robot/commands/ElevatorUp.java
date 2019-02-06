@@ -34,7 +34,7 @@ public class ElevatorUp extends Command {
   @Override
   protected void execute() {
     // if we triggered a setPoint
-    elevator.elevatorMotor.set(0.2);
+    elevator.elevatorMotor.set(-0.2);
     if(!elevator.elevatorLimitUp.get()) elevator.position = ElevatorPosition.ABOVE;
   }
 
