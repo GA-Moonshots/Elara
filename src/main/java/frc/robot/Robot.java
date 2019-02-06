@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Grabber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +29,7 @@ import frc.robot.subsystems.Elevator;
 public class Robot extends TimedRobot {
 
   public static Elevator elevator = new Elevator();
+  public static Grabber grabber = new Grabber();
 
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
