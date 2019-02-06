@@ -15,8 +15,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Grabber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  public Jaguar grabberMotor = new Jaguar(RobotMap.GRABBERPORT);
+  public Encoder grabberEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
   
-
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

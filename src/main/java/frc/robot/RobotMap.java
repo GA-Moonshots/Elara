@@ -29,6 +29,7 @@ public class RobotMap {
   public static int RIGHT1PORT = 3;
   public static int RIGHT2PORT = 2;
   public static int ELEVATORPORT = 0;
+  public static int GRABBERPORT = 5;
 
   public static int DIO_LIMITUP = 3;
   public static int DIO_LIMITDOWN = 4;
