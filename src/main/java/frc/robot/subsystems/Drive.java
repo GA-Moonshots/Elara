@@ -22,11 +22,10 @@ import edu.wpi.first.wpilibj.AnalogInput;
  */
 public class Drive extends PIDSubsystem {
   
-  // TODO: Research MotionProfileStatus
-  
   // here's a gyro
   public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  public AnalogInput ultra = new AnalogInput(0);
+  public AnalogInput ultra0 = new AnalogInput(0);
+  public AnalogInput ultra1 = new AnalogInput(1);
 
   // here's some motors
   public Jaguar leftMotor1;
