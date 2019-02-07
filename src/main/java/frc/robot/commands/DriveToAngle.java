@@ -59,6 +59,8 @@ public class DriveToAngle extends Command {
     double minPowerNeeded = 0.3; // added to output
     double output;
     double error = -(((drive.gyro.getAngle() % 360) * 360) - target);	
+    if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++;
+    if(check > 15) return 0.0;
     output = (maxPowerAllowed - minPowerNeeded / 360) * error;
     if (error > 0) return output += minPowerNeeded; //CC
     else return output -= minPowerNeeded; //CCW
