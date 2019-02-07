@@ -57,11 +57,12 @@ public class DriveToAngle extends Command {
       // NOTE: Negative return values will increase the gyro's value
       double maxPowerAllowed = 0.7; // cap the power 
       double minPowerNeeded = 0.3; // added to output
+      double slope = maxPowerAllowed - minPowerNeeded;
       double output;
       // Calculate the error
       double error = -(drive.gyro.getAngle() - target);	
       //Calculate the output without minPowerNeeded
-      output = (0.4 / 180) * error;
+      output = (slope / 180) * error;
       //Clockwise Logic
       if (error > 0) {
         return output += minPowerNeeded;
