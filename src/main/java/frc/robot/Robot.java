@@ -18,6 +18,8 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Grabber;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.cscore.UsbCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -127,6 +129,10 @@ public class Robot extends TimedRobot {
     // TODO: Move to all-stop command that halts all motors
     drivymcDriveDriverson.drive.arcadeDrive(0, 0);
     drivymcDriveDriverson.gyro.reset();
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		// camera1.setResolution(160, 120);
+    // camera2.setResolution(160, 120);
   }
 
   /**
