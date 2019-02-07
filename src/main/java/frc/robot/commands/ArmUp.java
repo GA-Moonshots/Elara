@@ -8,17 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Elevator.ElevatorPosition;;
 /**
  * Responding to motor control. Runs infinitely
  */
 public class ArmUp extends Command {
-
-  private Arm arm = Robot.arm;
 
   public ArmUp() {
     // Use requires() here to declare subsystem dependencies

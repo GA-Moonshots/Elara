@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,9 +19,9 @@ public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // here's a motor i'm declaring here, sorry Mr. A it's not in a command
-  public Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
+  public Jaguar armMotor = new Jaguar(RobotMap.ARMPORT);
   // for the love of God start the elevator down
-  public Encoder sampleEncoder = new Encoder(RobotMap.ARM_ENC_A, RobotMap.ARM_ENC_B, false, Encoder.EncodingType.k4X);
+  public Encoder armEncoder = new Encoder(RobotMap.ARM_ENC_A, RobotMap.ARM_ENC_B, false, Encoder.EncodingType.k4X);
   
   /**
    * Tracks elevator's porition relative to two limit switches
