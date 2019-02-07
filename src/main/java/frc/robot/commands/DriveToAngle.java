@@ -54,6 +54,7 @@ public class DriveToAngle extends Command {
    * @author Creds: Robert Hayek
    */
   private double notReallyPID() {
+<<<<<<< HEAD
     // NOTE: Negative return values will increase the gyro's value
     double maxPowerAllowed = 0.7; // cap the power 
     double minPowerNeeded = 0.3; // added to output
@@ -65,6 +66,17 @@ public class DriveToAngle extends Command {
     if (error > 0) return output += minPowerNeeded; //CC
     else return output -= minPowerNeeded; //CCW
 }
+=======
+      // NOTE: Negative return values will increase the gyro's value
+      double maxPowerAllowed = 0.7; // cap the power 
+      double minPowerNeeded = 0.3; // added to output
+      double output;
+      double error = -(drive.gyro.getAngle() - target);	
+      output = (maxPowerAllowed - minPowerNeeded / 180) * error;
+      if (error > 0) return output += minPowerNeeded; //CC
+      else return output -= minPowerNeeded; //CCW
+  }
+>>>>>>> parent of ea9a81d... Removed Bobby's PID
 
   // Called repeatedly when this Command is scheduled to run.
   @Override
