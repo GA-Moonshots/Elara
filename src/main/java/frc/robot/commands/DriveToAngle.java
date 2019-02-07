@@ -54,29 +54,36 @@ public class DriveToAngle extends Command {
    * @author Creds: Robert Hayek
    */
   private double notReallyPID() {
-<<<<<<< HEAD
     // NOTE: Negative return values will increase the gyro's value
-    double maxPowerAllowed = 0.7; // cap the power 
-    double minPowerNeeded = 0.3; // added to output
-    double output;
-    double error = -(((drive.gyro.getAngle() % 360) * 360) - target);	
+    double MAX_POWER = 0.7; // cap the power 
+    double MIN_POWER = 0.3; // lowest effective power
+    int ENOUGH_CHECKS = 15; // how many times do we pass our target until we're satisfied?
+
+    // determine the error
+    double error = target - drive.gyro.getAngle();
+
+    // determine the power output neutral of direction
+    double output = Math.abs(error / requestedRotation) * MAX_POWER;
+    if(output < MIN_POWER) output = MIN_POWER;
+    if(output > MAX_POWER) output = MAX_POWER;
+
+    // are we there yet? this is to avoid ping-ponging
+    // plus we never stop the method unless our output is zero
     if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++;
-    if(check > 15) return 0.0;
-    output = (maxPowerAllowed - minPowerNeeded / 360) * error;
-    if (error > 0) return output += minPowerNeeded; //CC
-    else return output -= minPowerNeeded; //CCW
-}
-=======
-      // NOTE: Negative return values will increase the gyro's value
-      double maxPowerAllowed = 0.7; // cap the power 
-      double minPowerNeeded = 0.3; // added to output
-      double output;
-      double error = -(drive.gyro.getAngle() - target);	
-      output = (maxPowerAllowed - minPowerNeeded / 180) * error;
-      if (error > 0) return output += minPowerNeeded; //CC
-      else return output -= minPowerNeeded; //CCW
+    if(check > ENOUGH_CHECKS) return 0.0;
+
+    // determine the direction
+    // if I was trying to go a positive angle change from the start
+    if(requestedRotation > 0){
+      if(error > 0) return -output; // move in a positive direction
+      else return output; // compensate for over-turning by going a negative direction
+    }
+    // if I was trying to go a negative angle from the start
+    else{
+      if(error < 0) return output; // move in a negative direction as intended
+      else return -output; // compensate for over-turning by moving a positive direction
+    }
   }
->>>>>>> parent of ea9a81d... Removed Bobby's PID
 
   // Called repeatedly when this Command is scheduled to run.
   @Override
