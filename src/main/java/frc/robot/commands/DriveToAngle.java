@@ -64,13 +64,9 @@ public class DriveToAngle extends Command {
       //Calculate the output without minPowerNeeded
       output = (slope / 180) * error;
       //Clockwise Logic
-      if (error > 0) {
-        return output += minPowerNeeded;
-      }
+      if (error > 0) return output += minPowerNeeded;
       //Counter-clockwise logic
-      else {
-        return output -= minPowerNeeded;
-      }
+      else return output -= minPowerNeeded;
   }
 
   // Called repeatedly when this Command is scheduled to run.
