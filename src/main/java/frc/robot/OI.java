@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ArmDown; 
+import frc.robot.commands.ArmUp;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.DriveToAngle;
 import frc.robot.commands.ElevatorDown;
@@ -61,8 +63,8 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     // BUTTONS
-    bButton.whenPressed(new DriveToAngle(-90));
-    xButton.whenPressed(new DriveToAngle(180));
+    bButton.whenPressed(new ArmUp());
+    xButton.whenPressed(new ArmDown());
     yButton.whileHeld(new ElevatorUp());
     aButton.whileHeld(new ElevatorDown());
     leftBumper.whileHeld(new GrabberOpen());
