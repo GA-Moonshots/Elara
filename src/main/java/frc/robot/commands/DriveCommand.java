@@ -41,7 +41,30 @@ public class DriveCommand extends Command {
     }
     if(Math.abs(valuelefty) < dead){
       valuelefty = 0;
-    }    
+    }   
+    // CHECK FOR POV ANGLE COMMANDS
+    if(OI.xbox.getPOV()==45){
+      new DriveToAngle(45);
+    } 
+    else if(OI.xbox.getPOV()==90){
+      new DriveToAngle(90);
+    }
+    else if(OI.xbox.getPOV()==135){
+      new DriveToAngle(135);
+    }
+    else if(OI.xbox.getPOV()==180){
+      new DriveToAngle(180);
+    }
+    else if(OI.xbox.getPOV()==225){
+      new DriveToAngle(-135);
+    }
+    else if(OI.xbox.getPOV()==270){
+      new DriveToAngle(-90);
+    }
+    else if(OI.xbox.getPOV()==315){
+      new DriveToAngle(-45);
+    }
+    
 
     Robot.drivymcDriveDriverson.drive.arcadeDrive(valuelefty, -valueleftx); 
   }
