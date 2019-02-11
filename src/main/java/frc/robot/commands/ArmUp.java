@@ -8,55 +8,42 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Elevator.ElevatorPosition;;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class ElevatorUp extends Command {
+public class ArmUp extends Command {
 
-  private Elevator elevator = Robot.elevator;
-
-  public ElevatorUp() {
+  public ArmUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.elevator);
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    elevator.position = ElevatorPosition.BETWEEN;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // if we triggered a setPoint
-    elevator.elevatorMotor.set(-0.2);
-    if(!elevator.elevatorLimitUp.get()) elevator.position = ElevatorPosition.ABOVE;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.position == ElevatorPosition.ABOVE ||
-              !elevator.elevatorLimitUp.get();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    elevator.elevatorMotor.set(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    elevator.elevatorMotor.set(0.0);
   }
 
 }

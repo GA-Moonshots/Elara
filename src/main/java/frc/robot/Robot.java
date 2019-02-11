@@ -9,15 +9,17 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Grabber;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.cscore.UsbCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +32,7 @@ public class Robot extends TimedRobot {
 
   public static Elevator elevator = new Elevator();
   public static Grabber grabber = new Grabber();
+  public static Arm arm = new Arm();
 
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
@@ -61,8 +64,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-    SmartDashboard.putNumber("Elevator encoder", elevator.sampleEncoder.get());
-    SmartDashboard.putNumber("Ultra Distance Reading", drivymcDriveDriverson.ultra.getVoltage()/0.00097);
    
   }
 
@@ -128,6 +129,10 @@ public class Robot extends TimedRobot {
     // TODO: Move to all-stop command that halts all motors
     drivymcDriveDriverson.drive.arcadeDrive(0, 0);
     drivymcDriveDriverson.gyro.reset();
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		// camera1.setResolution(160, 120);
+    // camera2.setResolution(160, 120);
   }
 
   /**

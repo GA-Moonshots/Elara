@@ -31,10 +31,13 @@ public class RobotMap {
   public static int RIGHT2PORT = 2;
   public static int ELEVATORPORT = 0;
   public static int GRABBERPORT = 5;
+  public static int ARMPORT = 6;
 
   // DIO
   public static int GRABBER_ENC_A = 1;
   public static int GRABBER_ENC_B = 0;
+  public static int ARM_ENC_A = 6;
+  public static int ARM_ENC_B = 7;
   public static int ELEVATOR_ENC_A = 2;
   public static int ELEVATOR_ENC_B = 3; 
   public static int DIO_LIMITUP = 4;
