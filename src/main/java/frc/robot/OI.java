@@ -62,8 +62,8 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     // BUTTONS
-    bButton.whenPressed(new ArmUp());
-    xButton.whenPressed(new ArmDown());
+    bButton.whileHeld(new ArmUp());
+    xButton.whileHeld(new ArmDown());
     yButton.whileHeld(new ElevatorUp());
     aButton.whileHeld(new ElevatorDown());
     leftBumper.whileHeld(new GrabberOpen());
