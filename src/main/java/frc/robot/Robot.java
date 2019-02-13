@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-      SmartDashboard.putNumber("POV", OI.xbox.getPOV());
+      SmartDashboard.putNumber("encoder", Robot.arm.armEncoder.get());
   }
 
   /**

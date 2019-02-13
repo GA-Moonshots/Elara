@@ -31,11 +31,12 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ArmHoldAt());
+    //setDefaultCommand(new ArmHoldAt());
   }
 
 
   public Arm(){
+    armEncoder.reset();
     armEncoder.setDistancePerPulse(0);
     holdAt = armEncoder.get();
   }
