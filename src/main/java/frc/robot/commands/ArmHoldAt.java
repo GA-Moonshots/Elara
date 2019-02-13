@@ -12,9 +12,9 @@ import frc.robot.Robot;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class ArmUp extends Command {
+public class ArmHoldAt extends Command {
 
-  public ArmUp() {
+  public ArmHoldAt() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.arm);
   }
@@ -24,10 +24,43 @@ public class ArmUp extends Command {
   protected void initialize() {
   }
 
+
+  private double notReallyPID() {
+  
+    double MAX_POWER = 0.7; // cap the power 
+    double MIN_POWER = 0.3; // lowest effective power
+    int ENOUGH_CHECKS = 15; // how many times do we pass our target until we're satisfied?
+
+    // determine the error
+    double error = target - drive.gyro.getAngle();
+
+    // determine the power output neutral of direction
+    double output = Math.abs(error / requestedRotation) * MAX_POWER;
+    if(output < MIN_POWER) output = MIN_POWER;
+    if(output > MAX_POWER) output = MAX_POWER;
+
+    // are we there yet? this is to avoid ping-ponging
+    // plus we never stop the method unless our output is zero
+    if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++;
+    if(check > ENOUGH_CHECKS) return 0.0;
+
+    // determine the direction
+    // if I was trying to go a positive angle change from the start
+    if(requestedRotation > 0){
+      if(error > 0) return -output; // move in a positive direction
+      else return output; // compensate for over-turning by going a negative direction
+    }
+    // if I was trying to go a negative angle from the start
+    else{
+      if(error < 0) return output; // move in a negative direction as intended
+      else return -output; // compensate for over-turning by moving a positive direction
+    }
+  }
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.arm.armMotor.set(0.2);
+    Robot.arm.armMotor.set(notReallyPID());
   }
 
   // Make this return true when this Command no longer needs to run execute()
