@@ -39,6 +39,9 @@ public class ArmHoldAt extends Command {
     if(error > 0 && output < MIN_UPWARD_POWER) output = MIN_UPWARD_POWER;
     if(output > MAX_POWER) output = MAX_POWER;
 
+    if(error > 0) return output;
+    else return -output * 0.8; // nerf going down because gravity will help
+
   }
 
   // Called repeatedly when this Command is scheduled to run
