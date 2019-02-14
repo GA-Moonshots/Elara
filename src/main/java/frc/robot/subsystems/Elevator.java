@@ -8,7 +8,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -22,7 +21,7 @@ public class Elevator extends Subsystem {
   // here's a motor i'm declaring here, sorry Mr. A it's not in a command
   public Jaguar elevatorMotor = new Jaguar(RobotMap.ELEVATORPORT);
   // for the love of God start the elevator down
-  public Encoder sampleEncoder = new Encoder(RobotMap.ELEVATOR_ENC_A, RobotMap.ELEVATOR_ENC_B, false, Encoder.EncodingType.k4X);
+  //public Encoder sampleEncoder = new Encoder(RobotMap.ELEVATOR_ENC_A, RobotMap.ELEVATOR_ENC_B, false, Encoder.EncodingType.k4X);
   public DigitalInput elevatorLimitUp = new DigitalInput(RobotMap.DIO_LIMITUP);
   public DigitalInput elevatorLimitDown = new DigitalInput(RobotMap.DIO_LIMITDOWN);
 
@@ -44,7 +43,5 @@ public class Elevator extends Subsystem {
 
 
   public Elevator(){
-    sampleEncoder.setDistancePerPulse(0);
-    //sampleInput = new DigitalInput(2);
   }
 }

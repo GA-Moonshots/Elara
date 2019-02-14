@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 
 /**
@@ -19,7 +18,7 @@ public class Grabber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public Jaguar grabberMotor = new Jaguar(RobotMap.GRABBERPORT);
-  public Encoder grabberEncoder = new Encoder(RobotMap.GRABBER_ENC_A, RobotMap.GRABBER_ENC_B, false, Encoder.EncodingType.k4X);
+  //public Encoder grabberEncoder = new Encoder(RobotMap.GRABBER_ENC_A, RobotMap.GRABBER_ENC_B, false, Encoder.EncodingType.k4X);
   
   @Override
   public void initDefaultCommand() {
