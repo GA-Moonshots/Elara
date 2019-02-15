@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ArmHoldAt;
 import frc.robot.commands.ArmHoldDecrease;
 import frc.robot.commands.ArmHoldIncrease;
+import frc.robot.commands.ArmHoldKill;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
 import frc.robot.commands.GrabberClose;
@@ -43,7 +45,10 @@ public class OI {
   public static Button yButton = new JoystickButton(xbox, 4);
   public static Button leftBumper = new JoystickButton(xbox, 5);
   public static Button rightBumper = new JoystickButton(xbox, 6);
+  public static Button selectButton = new JoystickButton(xbox, 7);
+  public static Button startButton = new JoystickButton(xbox, 8);
   public static Button leftStickClick = new JoystickButton(xbox, 9);
+  
   
   public OI(){
     //// TRIGGERING COMMANDS WITH BUTTONS
@@ -69,6 +74,8 @@ public class OI {
     leftStickClick.whenPressed(new DriveCommand());
     xButton.whenPressed(new ArmHoldIncrease());
     bButton.whenPressed(new ArmHoldDecrease());
+    startButton.whenPressed(new ArmHoldKill());
+    selectButton.whenPressed(new ArmHoldAt());
   }
 
   
