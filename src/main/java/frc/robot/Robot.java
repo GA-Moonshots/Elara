@@ -50,6 +50,7 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new DriveCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
   }
 
   /**
@@ -64,7 +65,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // TEST SENSORS
-      SmartDashboard.putNumber("encoder", Robot.arm.armEncoder.get());
+    SmartDashboard.putNumber("Arm Position", Robot.arm.armEncoder.get());
+    SmartDashboard.putNumber("Arm Target", Robot.arm.holdAt);
   }
 
   /**

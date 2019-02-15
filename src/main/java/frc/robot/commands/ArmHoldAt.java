@@ -85,9 +85,7 @@ public class ArmHoldAt extends Command {
   @Override
   protected void execute() {
     adjustHoldPower();
-    SmartDashboard.putNumber("HoldPower", holdPower);
-    SmartDashboard.putNumber("holdAt", Robot.arm.holdAt);
-    Robot.arm.holdAt = (int)(SmartDashboard.getNumber("holdAt", 200));
+    SmartDashboard.putNumber("Arm Power", holdPower);
     Robot.arm.armMotor.set(holdPower);
   }
 
