@@ -9,12 +9,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 /**
  * Responding to motor control. Runs infinitely
  */
 public class ArmHoldAt extends Command {
 
-  private double holdPower = 0.2;
+  private double holdPower = 0.0;
   private boolean stabalizationMode = false;
 
   public ArmHoldAt() {
@@ -35,7 +36,7 @@ public class ArmHoldAt extends Command {
     double MAX_POWER = 0.7; // cap the power 
     double MIN_UPWARD_POWER = 0.3; // fight gravity
 
-    // determine the error
+    // determine the difference between where I want to go and where I'm at
     double error = Robot.arm.holdAt - Robot.arm.armEncoder.get();
 
     // am I bouncing too high?
@@ -63,10 +64,22 @@ public class ArmHoldAt extends Command {
 
   }
 
+
+  private void adjustHoldPower(){
+    // determine the difference between where I want to go and where I'm at
+    double error = Robot.arm.holdAt - Robot.arm.armEncoder.get();
+
+    if(Math.abs(error) > RobotMap.ANGLE_TOLERANCE * 5){
+      if(error < 0) holdPower -= .001;
+      else if(error > 0) holdPower += .001;
+    }
+  }
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.arm.armMotor.set(notReallyPID());
+    adjustHoldPower();
+    Robot.arm.armMotor.set(holdPower);
   }
 
   // Make this return true when this Command no longer needs to run execute()
