@@ -28,8 +28,7 @@ public class ArmHoldAt extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arm.armEncoder.reset();
-    Robot.arm.holdAt = Robot.arm.armEncoder.get();
+    
   }
 
 
