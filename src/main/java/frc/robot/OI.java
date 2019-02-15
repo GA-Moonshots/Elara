@@ -10,10 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ArmHoldUp;
-import frc.robot.commands.ArmHoldDown;
+import frc.robot.commands.ArmHoldDecrease;
+import frc.robot.commands.ArmHoldIncrease;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
 import frc.robot.commands.GrabberClose;
@@ -68,8 +67,8 @@ public class OI {
     leftBumper.whileHeld(new GrabberOpen());
     rightBumper.whileHeld(new GrabberClose());
     leftStickClick.whenPressed(new DriveCommand());
-    xButton.whenPressed(new ArmHoldUp());
-    bButton.whenPressed(new ArmHoldDown());
+    xButton.whenPressed(new ArmHoldIncrease());
+    bButton.whenPressed(new ArmHoldDecrease());
   }
 
   
