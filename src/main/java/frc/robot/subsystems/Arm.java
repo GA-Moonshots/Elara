@@ -38,6 +38,6 @@ public class Arm extends Subsystem {
   public Arm(){
     armEncoder.reset();
     armEncoder.setDistancePerPulse(0);
-    holdAt = armEncoder.get();
+    holdAt = 200;
   }
 }

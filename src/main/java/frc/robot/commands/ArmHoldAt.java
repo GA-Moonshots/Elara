@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 /**
@@ -15,6 +16,7 @@ import frc.robot.RobotMap;
  */
 public class ArmHoldAt extends Command {
 
+  private int check = 0;
   private double holdPower = 0.0;
   private boolean stabalizationMode = false;
 
@@ -70,8 +72,12 @@ public class ArmHoldAt extends Command {
     double error = Robot.arm.holdAt - Robot.arm.armEncoder.get();
 
     if(Math.abs(error) > RobotMap.ANGLE_TOLERANCE * 5){
-      if(error < 0) holdPower -= .001;
-      else if(error > 0) holdPower += .001;
+      check++;
+      if(check > 10 || Math.abs(error) > 100){
+        check = 0;
+        if(error < 0) holdPower -= .001;
+        else if(error > 0) holdPower += .001;
+      }
     }
   }
 
@@ -79,6 +85,9 @@ public class ArmHoldAt extends Command {
   @Override
   protected void execute() {
     adjustHoldPower();
+    SmartDashboard.putNumber("HoldPower", holdPower);
+    SmartDashboard.putNumber("holdAt", Robot.arm.holdAt);
+    Robot.arm.holdAt = (int)(SmartDashboard.getNumber("holdAt", 200));
     Robot.arm.armMotor.set(holdPower);
   }
 
