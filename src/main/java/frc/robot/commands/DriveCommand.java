@@ -15,6 +15,10 @@ import frc.robot.Robot;
  */
 public class DriveCommand extends Command {
 
+  private boolean notMoving = true;
+  private boolean driveStraight = false;
+  private double driveStraightAt;
+
   public DriveCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.drivymcDriveDriverson);
@@ -42,6 +46,22 @@ public class DriveCommand extends Command {
     if(Math.abs(valuelefty) < dead){
       valuelefty = 0;
     }   
+
+    // assist driving straight 
+    if(valuelefty > 0 && valueleftx == 0 && notMoving){
+      notMoving = false;
+      driveStraight = true;
+      this.driveStraightAt = Robot.drivymcDriveDriverson.gyro.getAngle();
+    }
+    else if(valueleftx != 0){
+      notMoving = false;
+      driveStraight = false;
+    }
+    else if(valueleftx == 0 && valuelefty == 0){
+      notMoving = true;
+      driveStraight = false;
+    }
+
     // CHECK FOR POV ANGLE COMMANDS
     if(OI.xbox.getPOV()==45){
       new DriveToAngle(45);
