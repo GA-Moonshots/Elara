@@ -10,32 +10,32 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Arm;
 
 /**
  * Drive to an angle comand
  * 
  * @author Moonshots Software Team
  */
-public class DriveToAngle extends Command {
+public class ArmMoveTo extends Command {
 
   private double target;
   private int check;
-  private int requestedRotation;
+  private int requestedEncoderValue;
 
-  private Drive drive = Robot.drivymcDriveDriverson;
+  private Arm arm = Robot.arm;
 
-  public DriveToAngle(int requestedRotation) {
+  public ArmMoveTo(int requestedRotation) {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.drivymcDriveDriverson);
-    this.requestedRotation = requestedRotation;
+    requires(Robot.arm);
+    this.requestedEncoderValue = requestedEncoderValue;
 
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    target = drive.gyro.getAngle() + requestedRotation;
+    target = arm.armEncoder.get() + requestedEncoderValue;
     check = 0;
   }
 
@@ -55,25 +55,25 @@ public class DriveToAngle extends Command {
   private double notReallyPID() {
     // NOTE: Negative return values will increase the gyro's value
     double MAX_POWER = 0.7; // cap the power 
-    double MIN_POWER = 0.3; // lowest effective power
+    double MIN_POWER = 0.2; // lowest effective power
     int ENOUGH_CHECKS = 15; // how many times do we pass our target until we're satisfied?
 
     // determine the error
-    double error = target - drive.gyro.getAngle();
+    double error = target - arm.armEncoder.get();
 
     // determine the power output neutral of direction
-    double output = Math.abs(error / requestedRotation) * MAX_POWER;
+    double output = Math.abs(error / requestedEncoderValue) * MAX_POWER;
     if(output < MIN_POWER) output = MIN_POWER;
     if(output > MAX_POWER) output = MAX_POWER;
 
     // are we there yet? this is to avoid ping-ponging
     // plus we never stop the method unless our output is zero
-    if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE) check++;
+    if(Math.abs(error) < RobotMap.ANGLE_TOLERANCE*5) check++;
     if(check > ENOUGH_CHECKS) return 0.0;
 
     // determine the direction
     // if I was trying to go a positive angle change from the start
-    if(requestedRotation > 0){
+    if(requestedEncoderValue > 0){
       if(error > 0) return -output; // move in a positive direction
       else return output; // compensate for over-turning by going a negative direction
     }
@@ -84,24 +84,17 @@ public class DriveToAngle extends Command {
     }
   }
 
-  // Called repeatedly when this Command is scheduled to run.
-  @Override
-  protected void execute() {
-    // if we triggered a setPoint
-    drive.drive.arcadeDrive(0, notReallyPID());
-  }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.drivymcDriveDriverson.leftSide.get() == 0
-        && Math.abs(drive.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
+    return Robot.arm.armMotor.get() == 0
+        && Math.abs(arm.armEncoder.get() - target) < RobotMap.ANGLE_TOLERANCE*5;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    drive.drive.arcadeDrive(0, 0);
+    Robot.arm.armMotor.set(speed); = 0;
     check = 0;
   }
 
