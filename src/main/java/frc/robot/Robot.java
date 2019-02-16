@@ -19,6 +19,12 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Grabber;
 import edu.wpi.first.wpilibj.CameraServer;
+
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 
 /**
@@ -47,9 +53,25 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    // m_chooser.setDefaultOption("Default Auto", new DriveCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+
+    new Thread(() -> {
+      UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+      UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+      camera1.setResolution(640, 480);
+      camera2.setResolution(640, 480);
+      
+      CvSink cvSink = CameraServer.getInstance().getVideo();
+      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
+      
+      Mat source = new Mat();
+      Mat output = new Mat();
+      
+      while(!Thread.interrupted()) {
+          cvSink.grabFrame(source);
+          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+          outputStream.putFrame(output);
+      }
+    }).start();
 
   }
 
@@ -128,11 +150,11 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    // TODO: Move to all-stop command that halts all motors
+
     drivymcDriveDriverson.drive.arcadeDrive(0, 0);
     drivymcDriveDriverson.gyro.reset();
-    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    
+  
 		// camera1.setResolution(160, 120);
     // camera2.setResolution(160, 120);
   }
