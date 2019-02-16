@@ -66,7 +66,7 @@ public class DriveCommand extends Command {
     }
     
 
-    Robot.drivymcDriveDriverson.drive.arcadeDrive(valuelefty, -valueleftx); 
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx); 
   }
 
   // Make this return true when this Command no longer needs to run execute()
