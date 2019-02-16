@@ -18,9 +18,7 @@ import frc.robot.RobotMap;
  * The system based around the elevator lift motor
  */
 public class Kickstand extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  // here's a motor i'm declaring here, sorry Mr. A it's not in a command
+
   public Jaguar kickstandMotor = new Jaguar(RobotMap.KICKPORT);
 
   public Potentiometer kickstandPot = new AnalogPotentiometer(new AnalogInput(RobotMap.KICK_POT));
