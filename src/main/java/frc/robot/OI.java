@@ -17,8 +17,8 @@ import frc.robot.commands.ArmHoldKill;
 import frc.robot.commands.ArmHoldReset;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
-import frc.robot.commands.GrabberClose;
-import frc.robot.commands.GrabberOpen;
+import frc.robot.commands.KickstandDown;
+import frc.robot.commands.KickstandUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -69,8 +69,8 @@ public class OI {
     // BUTTONS
     yButton.whileHeld(new ElevatorUp());
     aButton.whileHeld(new ElevatorDown());
-    leftBumper.whileHeld(new GrabberOpen());
-    rightBumper.whileHeld(new GrabberClose());
+    leftBumper.whileHeld(new KickstandDown());
+    rightBumper.whileHeld(new KickstandUp());
     leftStickClick.whenPressed(new DriveCommand());
     xButton.whenPressed(new ArmHoldIncrease());
     bButton.whenPressed(new ArmHoldDecrease());

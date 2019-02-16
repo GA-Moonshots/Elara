@@ -32,6 +32,7 @@ public class RobotMap {
   public static int ELEVATORPORT = 0;
   public static int GRABBERPORT = 1;
   public static int ARMPORT = 6;
+  public static int KICKPORT = 7;
 
   // DIO
   public static int GRABBER_ENC_A = 1;
@@ -42,6 +43,9 @@ public class RobotMap {
   public static int ELEVATOR_ENC_B = 3; 
   public static int DIO_LIMITUP = 4;
   public static int DIO_LIMITDOWN = 5;
+
+  // ANALOG
+  public static int KICK_POT = 0;
 
   // MATH CONSTANTS
   public static double ANGLE_TOLERANCE = 2.0;
