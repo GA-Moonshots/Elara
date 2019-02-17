@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**
@@ -34,6 +35,7 @@ public class DriveCommand extends Command {
   @Override
   protected void execute() {
 
+    SmartDashboard.putBoolean("StraightAssist", driveStraight);
     //MANUAL DEAD ZONE
     double dead = 0.15;
 
@@ -48,7 +50,7 @@ public class DriveCommand extends Command {
     }   
 
     // trigger assist driving straight 
-    if(valuelefty > 0 && valueleftx == 0 && notMoving){
+    if(valuelefty < 0 && valueleftx == 0 && notMoving){
       notMoving = false;
       driveStraight = true;
       this.driveStraightAt = Robot.drivymcDriveDriverson.gyro.getAngle();
@@ -69,31 +71,6 @@ public class DriveCommand extends Command {
       Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx); 
     }
 
-    /*
-    // CHECK FOR POV ANGLE COMMANDS
-    if(OI.xbox.getPOV()==45){
-      new DriveToAngle(45);
-    } 
-    else if(OI.xbox.getPOV()==90){
-      new DriveToAngle(90);
-    }
-    else if(OI.xbox.getPOV()==135){
-      new DriveToAngle(135);
-    }
-    else if(OI.xbox.getPOV()==180){
-      new DriveToAngle(180);
-    }
-    else if(OI.xbox.getPOV()==225){
-      new DriveToAngle(-135);
-    }
-    else if(OI.xbox.getPOV()==270){
-      new DriveToAngle(-90);
-    }
-    else if(OI.xbox.getPOV()==315){
-      new DriveToAngle(-45);
-    }
-    */
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.ArmHoldAt;
+import frc.robot.commands.ArmPOV;
 
 /**
  * The system based around the elevator lift motor
@@ -25,13 +25,13 @@ public class Arm extends Subsystem {
   public Encoder armEncoder = new Encoder(RobotMap.ARM_ENC_A, RobotMap.ARM_ENC_B, false, Encoder.EncodingType.k4X);
   
   //track the desired position of the arm
-  public int holdAt;
+  // public int holdAt;
 
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ArmHoldAt());
+    setDefaultCommand(new ArmPOV());
   }
 
 
