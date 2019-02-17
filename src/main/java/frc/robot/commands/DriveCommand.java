@@ -47,7 +47,7 @@ public class DriveCommand extends Command {
       valuelefty = 0;
     }   
 
-    // assist driving straight 
+    // trigger assist driving straight 
     if(valuelefty > 0 && valueleftx == 0 && notMoving){
       notMoving = false;
       driveStraight = true;
@@ -62,6 +62,14 @@ public class DriveCommand extends Command {
       driveStraight = false;
     }
 
+    if(driveStraight){
+      double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, (difference * .03)); 
+    } else {
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx); 
+    }
+
+    /*
     // CHECK FOR POV ANGLE COMMANDS
     if(OI.xbox.getPOV()==45){
       new DriveToAngle(45);
@@ -84,10 +92,8 @@ public class DriveCommand extends Command {
     else if(OI.xbox.getPOV()==315){
       new DriveToAngle(-45);
     }
+    */
     
-
-
-    Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx); 
   }
 
   // Make this return true when this Command no longer needs to run execute()
