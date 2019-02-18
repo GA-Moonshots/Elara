@@ -30,6 +30,11 @@ public class ArmPOV extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(OI.xbox.getRawAxis(2) != 0 || OI.xbox.getRawAxis(3) != 0)
+    {
+      Robot.arm.armMotor.set(OI.xbox.getRawAxis(2)-OI.xbox.getRawAxis(3));
+    }    
+    
     // CHECK FOR POV COMMANDS
     switch(OI.xbox.getPOV()){
       case -1:  Robot.arm.armMotor.set(0.0);
