@@ -33,21 +33,23 @@ public class ArmPOV extends Command {
     if(OI.xbox.getRawAxis(2) != 0 || OI.xbox.getRawAxis(3) != 0)
     {
       Robot.arm.armMotor.set(OI.xbox.getRawAxis(2)-OI.xbox.getRawAxis(3));
-    }    
-    
+    }
+    else{    
     // CHECK FOR POV COMMANDS
-    switch(OI.xbox.getPOV()){
-      case -1:  Robot.arm.armMotor.set(0.0);
-                break;
-      case 0:   Robot.arm.armMotor.set(-1.0);
-      case 45:  break;
-      case 90:  break;
-      case 135: break;
-      case 180: Robot.arm.armMotor.set(0.15);
-                break;
-      case 225: break;
-      case 270: break;
-      case 315: break;
+      switch(OI.xbox.getPOV()){
+        case -1:  Robot.arm.armMotor.set(0.0);
+                  break;
+        case 0:   Robot.arm.armMotor.set(-1.0);
+                  break;
+        case 45:  break;
+        case 90:  break;
+        case 135: break;
+        case 180: Robot.arm.armMotor.set(0.15);
+                  break;
+        case 225: break;
+        case 270: break;
+        case 315: break;
+      }
     }
         
   }
