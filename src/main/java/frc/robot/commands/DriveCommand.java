@@ -66,7 +66,7 @@ public class DriveCommand extends Command {
 
     if(driveStraight){
       double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, (difference * .03)); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -(difference * .03)); 
     } else {
       Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx); 
     }

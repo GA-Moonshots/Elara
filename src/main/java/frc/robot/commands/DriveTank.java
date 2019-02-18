@@ -46,7 +46,7 @@ public class DriveTank extends Command {
       valueright = 0;
     }   
 
-    Robot.drivymcDriveDriverson.drive.tankDrive(valueleft, valueright);
+    Robot.drivymcDriveDriverson.drive.tankDrive(valueright, valueleft);
 
   }
 
