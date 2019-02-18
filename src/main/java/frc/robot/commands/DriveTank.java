@@ -8,43 +8,46 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class ArmPOV extends Command {
+public class DriveTank extends Command {
 
-  public ArmPOV() {
+  private double driveStraightAt;
+
+  public DriveTank() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.arm);
+    requires(Robot.drivymcDriveDriverson);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arm.armMotor.set(0.0);
-    
+    //Robot.drivymcDriveDriverson.drive.arcadeDrive(Robot.m_oi., target);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // CHECK FOR POV COMMANDS
-    switch(OI.xbox.getPOV()){
-      case -1:  Robot.arm.armMotor.set(0.0);
-                break;
-      case 0:   Robot.arm.armMotor.set(-1.0);
-      case 45:  break;
-      case 90:  break;
-      case 135: break;
-      case 180: Robot.arm.armMotor.set(0.15);
-                break;
-      case 225: break;
-      case 270: break;
-      case 315: break;
+
+    //MANUAL DEAD ZONE
+    double dead = 0.15;
+
+    double valueleft = -OI.xbox.getRawAxis(1);
+    double valueright = -OI.xbox.getRawAxis(5);
+
+    if(Math.abs(valueleft) < dead){
+      valueleft = 0;
     }
-        
+    if(Math.abs(valueright) < dead){
+      valueright = 0;
+    }   
+
+    Robot.drivymcDriveDriverson.drive.tankDrive(valueleft, valueright);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -56,14 +59,14 @@ public class ArmPOV extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.arm.armMotor.set(0.0);
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.arm.armMotor.set(0.0);
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(0,0);
   }
 
 }

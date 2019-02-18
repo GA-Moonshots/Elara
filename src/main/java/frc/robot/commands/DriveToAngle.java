@@ -39,19 +39,6 @@ public class DriveToAngle extends Command {
     check = 0;
   }
 
-  /**
-   * Using target, requestedRotation
-   * Calculates error
-   * output is the opposite value of error
-   * 
-   * Formula:
-   * output = ((0.4 / 180) * error) +- minimum power
-   * Add minimum power if moving clockwise
-   * Subtract minimum power if moving counterclockwise
-   * This does work, plug a few values in if unsure, and solve on paper.
-   * 
-   * @return output of movement
-   */
   private double notReallyPID() {
     // NOTE: Negative return values will increase the gyro's value
     double MAX_POWER = 0.7; // cap the power 

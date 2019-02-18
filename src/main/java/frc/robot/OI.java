@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveTank;
 import frc.robot.commands.ArmHoldKill;
 import frc.robot.commands.ArmHoldReset;
 import frc.robot.commands.ElevatorDown;
@@ -46,6 +47,7 @@ public class OI {
   public static Button selectButton = new JoystickButton(xbox, 7);
   public static Button startButton = new JoystickButton(xbox, 8);
   public static Button leftStickClick = new JoystickButton(xbox, 9);
+  public static Button rightStickClick = new JoystickButton(xbox, 10);
   
   
   public OI(){
@@ -70,6 +72,7 @@ public class OI {
     leftBumper.whileHeld(new KickstandDown());
     rightBumper.whileHeld(new KickstandUp());
     leftStickClick.whenPressed(new DriveCommand());
+    rightStickClick.whenPressed(new DriveTank());
     startButton.whenPressed(new ArmHoldKill());
     selectButton.whenPressed(new ArmHoldReset());
   }
