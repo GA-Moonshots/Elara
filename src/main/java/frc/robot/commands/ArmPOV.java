@@ -31,13 +31,13 @@ public class ArmPOV extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.xbox.getRawAxis(2) != 0)
+    if(OI.xbox.getRawAxis(3) != 0)
     {
-      Robot.arm.armMotor.set(.5*(OI.xbox.getRawAxis(2)));
+      Robot.arm.armMotor.set(.5*(OI.xbox.getRawAxis(3)));
     }
-    else if(OI.xbox.getRawAxis(3) != 0)
+    else if(OI.xbox.getRawAxis(2) != 0)
     {
-      Robot.arm.armMotor.set(0.75*(OI.xbox.getRawAxis(3)));
+      Robot.arm.armMotor.set(0.75*-(OI.xbox.getRawAxis(2)));
     }
     else{    
     // CHECK FOR POV COMMANDS
