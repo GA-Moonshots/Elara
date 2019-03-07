@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**
@@ -39,12 +40,15 @@ public class ArmPOV extends Command {
       switch(OI.xbox.getPOV()){
         case -1:  Robot.arm.armMotor.set(0.0);
                   break;
-        case 0:   Robot.arm.armMotor.set(-1.0);
+        // SAVED POSITION HIGH    
+        case 0:   Scheduler.getInstance().add(new ArmMoveTo(750));
                   break;
         case 45:  break;
-        case 90:  break;
+        case 90:  Scheduler.getInstance().add(new ArmMoveTo(450));
+                  break;
         case 135: break;
-        case 180: Robot.arm.armMotor.set(0.15);
+        // SAVED POSITION LOW
+        case 180: Scheduler.getInstance().add(new ArmMoveTo(250));
                   break;
         case 225: break;
         case 270: break;
