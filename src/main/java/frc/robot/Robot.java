@@ -58,9 +58,9 @@ public class Robot extends TimedRobot {
 
     new Thread(() -> {
       UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-      UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+      //UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
       camera1.setResolution(640, 480);
-      camera2.setResolution(640, 480);
+      //camera2.setResolution(640, 480);
       
       CvSink cvSink = CameraServer.getInstance().getVideo();
       CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
