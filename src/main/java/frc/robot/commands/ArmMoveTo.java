@@ -19,7 +19,7 @@ import frc.robot.subsystems.Arm;
  */
 public class ArmMoveTo extends Command {
 
-  private double target;
+  private double error;
   private int check;
   private int desiredEncoderValue;
   private double initialDifference;
@@ -48,7 +48,7 @@ public class ArmMoveTo extends Command {
     int ENOUGH_CHECKS = 15; // how many times do we pass our target until we're satisfied?
 
     // determine the error
-    double error = this.desiredEncoderValue - arm.armEncoder.get();
+    error = this.desiredEncoderValue - arm.armEncoder.get();
 
     // determine the power output neutral of direction
     double output = Math.abs(error / (this.initialDifference)) * MAX_POWER;
@@ -88,7 +88,7 @@ public class ArmMoveTo extends Command {
   @Override
   protected boolean isFinished() {
     return Robot.arm.armMotor.get() == 0
-        && Math.abs(arm.armEncoder.get() - target) < RobotMap.ANGLE_TOLERANCE * 5;
+        && Math.abs(error) < RobotMap.ANGLE_TOLERANCE * 5;
   }
 
   // Called once after isFinished returns true
