@@ -36,5 +36,6 @@ public class Arm extends Subsystem {
 
 
   public Arm(){
+    armEncoder.reset(); // encoder starts at zero. Max is ~900?
   }
 }
