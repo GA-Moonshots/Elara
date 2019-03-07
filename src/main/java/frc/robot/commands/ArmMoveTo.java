@@ -21,35 +21,37 @@ public class ArmMoveTo extends Command {
 
   private double target;
   private int check;
-  private int requestedAngleChange;
+  private int desiredEncoderValue;
+  private double initialDifference;
 
   private Arm arm = Robot.arm;
 
-  public ArmMoveTo(int requestedAngleChange) {
+  public ArmMoveTo(int desiredEncoderValue) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.arm);
-    this.requestedAngleChange = requestedAngleChange;
+    this.desiredEncoderValue = desiredEncoderValue;
 
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    target = arm.armEncoder.get() + (requestedAngleChange * 5);
+    // the original distance I want to travel, positive is DOWN, neg is UP
+    initialDifference = arm.armEncoder.get() - this.desiredEncoderValue;
     check = 0;
   }
 
   private double notReallyPID() {
-    // NOTE: Negative return values will increase the gyro's value
+    // NOTE: positive return GOES DOWN, negative goes DOWN
     double MAX_POWER = 0.7; // cap the power 
     double MIN_POWER = 0.2; // lowest effective power
     int ENOUGH_CHECKS = 15; // how many times do we pass our target until we're satisfied?
 
     // determine the error
-    double error = target - arm.armEncoder.get();
+    double error = this.desiredEncoderValue - arm.armEncoder.get();
 
     // determine the power output neutral of direction
-    double output = Math.abs(error / (requestedAngleChange * 5)) * MAX_POWER;
+    double output = Math.abs(error / (this.initialDifference)) * MAX_POWER;
     if(output < MIN_POWER) output = MIN_POWER;
     if(output > MAX_POWER) output = MAX_POWER;
 
@@ -59,15 +61,15 @@ public class ArmMoveTo extends Command {
     if(check > ENOUGH_CHECKS) return 0.0;
 
     // determine the direction
-    // if I was trying to go a positive angle change from the start
-    if(requestedAngleChange > 0){
-      if(error > 0) return output; // move in a positive direction
-      else return -output; // compensate for over-turning by going a negative direction
+    // if I wanted to go up from the start of this command...
+    if(initialDifference < 0){
+      if(error > 0) return -output; // move in a positive direction
+      else return output; // compensate for over-turning by going a negative direction
     }
-    // if I was trying to go a negative angle from the start
+    // if I was trying to go a down, we default to a positive return
     else{
-      if(error < 0) return -output; // move in a negative direction as intended
-      else return output; // compensate for over-turning by moving a positive direction
+      if(error < 0) return output; // move in a negative direction as intended
+      else return -output; // compensate for over-turning by moving a positive direction
     }
   }
 
