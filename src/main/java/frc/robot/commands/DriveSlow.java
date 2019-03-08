@@ -66,9 +66,9 @@ public class DriveSlow extends Command {
 
     if(driveStraight){
       double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*0.6, -(difference * .03)); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*0.4, -(difference * .03)); 
     } else {
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*0.6, -valueleftx*0.6); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*0.4, -valueleftx*0.4); 
     }
 
   }
