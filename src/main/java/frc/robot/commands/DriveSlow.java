@@ -19,6 +19,7 @@ public class DriveSlow extends Command {
   private boolean notMoving = true;
   private boolean driveStraight = false;
   private double driveStraightAt;
+  private double sensitivity = 0.5;
 
   public DriveSlow() {
     // Use requires() here to declare subsystem dependencies
@@ -66,9 +67,9 @@ public class DriveSlow extends Command {
 
     if(driveStraight){
       double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*0.4, -(difference * .03)); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -(difference * .03)); 
     } else {
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*0.4, -valueleftx*0.4); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -valueleftx*sensitivity); 
     }
 
   }
