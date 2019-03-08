@@ -18,6 +18,7 @@ import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
 import frc.robot.commands.KickstandDown;
 import frc.robot.commands.KickstandUp;
+import frc.robot.commands.DriveSlow;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -75,6 +76,7 @@ public class OI {
     rightStickClick.whenPressed(new DriveTank());
     startButton.whenPressed(new ArmHoldKill());
     selectButton.whenPressed(new ArmHoldReset());
+    xButton.whenPressed(new DriveSlow());
   }
 
   
