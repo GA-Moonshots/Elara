@@ -54,7 +54,7 @@ public class Drive extends Subsystem {
     rightSide = new SpeedControllerGroup(rightMotor1, rightMotor2);
     leftSide = new SpeedControllerGroup(leftMotor1, leftMotor2);
 
-    // making differential drive
+    // making differential drive  
     drive = new DifferentialDrive(rightSide, leftSide);
 
   }
@@ -63,7 +63,7 @@ public class Drive extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveSmooth()); // THIS IS HOW WE DRIVE THE ROBOT
+    setDefaultCommand(new DriveCommand()); // THIS IS HOW WE DRIVE THE ROBOT
   }
 
 

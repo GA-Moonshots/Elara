@@ -68,12 +68,13 @@ public class DriveSmooth extends Command {
     // THE SMOOTHNESS
     double requestedSpeed = -valuelefty;
     // limit how much we can change at a time so we get a smoother acceleration
-    double allowedChange = 0.1; // MAGIC NUMBER -- NOT COOL TO PUT IT HERE
+    double allowedChange = 0.05; // MAGIC NUMBER -- NOT COOL TO PUT IT HERE
     // limit the requested speed
     if(Math.abs(previous - requestedSpeed) > allowedChange){
-      if(requestedSpeed > 0) requestedSpeed += allowedChange;
-      else requestedSpeed -= allowedChange;
+      if(requestedSpeed > 0) requestedSpeed = previous + allowedChange;
+      else requestedSpeed = previous - allowedChange;
     }
+    previous = requestedSpeed;
 
     if(driveStraight){
       double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
