@@ -51,7 +51,7 @@ public class DriveSlow extends Command {
     }   
 
     // trigger assist driving straight 
-    if(valuelefty < 0 && valueleftx == 0 && notMoving){
+    if(valuelefty != 0 && valueleftx == 0 && notMoving){
       notMoving = false;
       driveStraight = true;
       this.driveStraightAt = Robot.drivymcDriveDriverson.gyro.getAngle();
