@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveSmooth;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 
@@ -62,7 +63,7 @@ public class Drive extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveCommand()); // THIS IS HOW WE DRIVE THE ROBOT
+    setDefaultCommand(new DriveSmooth()); // THIS IS HOW WE DRIVE THE ROBOT
   }
 
 
