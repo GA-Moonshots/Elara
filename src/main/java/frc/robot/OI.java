@@ -12,8 +12,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.DriveTank;
-import frc.robot.commands.ArmHoldKill;
+import frc.robot.commands.KillAll;
 import frc.robot.commands.ArmHoldReset;
+import frc.robot.commands.DiscRelease;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
 import frc.robot.commands.KickstandDown;
@@ -74,9 +75,10 @@ public class OI {
     rightBumper.whileHeld(new KickstandUp());
     leftStickClick.whenPressed(new DriveCommand());
     rightStickClick.whenPressed(new DriveTank());
-    startButton.whenPressed(new ArmHoldKill());
+    startButton.whenPressed(new KillAll());
     selectButton.whenPressed(new ArmHoldReset());
     xButton.whenPressed(new DriveSlow());
+    bButton.whenPressed(new DiscRelease());
   }
 
   

@@ -12,12 +12,14 @@ import frc.robot.Robot;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class ArmHoldKill extends Command {
+public class KillAll extends Command {
 
 
-  public ArmHoldKill() {
+  public KillAll() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.arm);
+    requires(Robot.elevator);
+    requires(Robot.drivymcDriveDriverson);
   }
 
   // Called just before this Command runs the first time
