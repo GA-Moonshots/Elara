@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.ArmPOV;
+import frc.robot.commands.ArmCommand;
 
 /**
  * The system based around the elevator lift motor
@@ -31,7 +31,7 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ArmPOV());
+    setDefaultCommand(new ArmCommand());
   }
 
 

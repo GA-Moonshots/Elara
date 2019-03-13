@@ -14,9 +14,9 @@ import frc.robot.Robot;
 /**
  * Responding to motor control. Runs infinitely
  */
-public class ArmPOV extends Command {
+public class ArmCommand extends Command {
 
-  public ArmPOV() {
+  public ArmCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.arm);
   }
@@ -41,7 +41,7 @@ public class ArmPOV extends Command {
     }
     else{    
       Robot.arm.armMotor.set(0);
-      }
+      
     }
         
   }
