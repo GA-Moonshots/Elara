@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -47,6 +48,7 @@ public class DriveCommand extends Command {
       case 225: break;
       case 270: break;
       case 315: break;
+    }
     SmartDashboard.putBoolean("StraightAssist", driveStraight);
     //MANUAL DEAD ZONE
     double dead = 0.15;
