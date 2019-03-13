@@ -25,10 +25,10 @@ public class RobotMap {
   public static int LEFTSTICKCLICK_NUM = 9;
 
   // MOTORS
-  public static int LEFT1PORT = 5;
-  public static int LEFT2PORT = 4;
-  public static int RIGHT1PORT = 3;
-  public static int RIGHT2PORT = 2;
+  public static int LEFT1PORT = 0;
+  public static int LEFT2PORT = 1;
+  public static int RIGHT1PORT = 2;
+  public static int RIGHT2PORT = 3;
   public static int ELEVATORPORT = 0;
   public static int GRABBERPORT = 1;
   public static int ARMPORT = 6;
