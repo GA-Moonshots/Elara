@@ -34,7 +34,19 @@ public class DriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    switch(OI.xbox.getPOV()){
+      case -1:   break;
+      // SAVED POSITION HIGH    
+      case 0:   break;
+      case 45:  break;
+      case 90:  break;
+      case 135: break;
+      // SAVED POSITION LOW
+      case 180: Scheduler.getInstance().add(new DriveToAngle(180));
+                break;
+      case 225: break;
+      case 270: break;
+      case 315: break;
     SmartDashboard.putBoolean("StraightAssist", driveStraight);
     //MANUAL DEAD ZONE
     double dead = 0.15;

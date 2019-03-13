@@ -40,23 +40,7 @@ public class ArmPOV extends Command {
       Robot.arm.armMotor.set(0.75*-(OI.xbox.getRawAxis(2)));
     }
     else{    
-    // CHECK FOR POV COMMANDS
-      switch(OI.xbox.getPOV()){
-        case -1:  Robot.arm.armMotor.set(0.0);
-                  break;
-        // SAVED POSITION HIGH    
-        case 0:   Scheduler.getInstance().add(new ArmMoveTo(750));
-                  break;
-        case 45:  break;
-        case 90:  Scheduler.getInstance().add(new ArmMoveTo(450));
-                  break;
-        case 135: break;
-        // SAVED POSITION LOW
-        case 180: Scheduler.getInstance().add(new ArmMoveTo(250));
-                  break;
-        case 225: break;
-        case 270: break;
-        case 315: break;
+      Robot.arm.armMotor.set(0);
       }
     }
         
