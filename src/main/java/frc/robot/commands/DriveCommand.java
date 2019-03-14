@@ -40,7 +40,8 @@ public class DriveCommand extends Command {
       // SAVED POSITION HIGH    
       case 0:   break;
       case 45:  break;
-      case 90:  break;
+      case 90:  Scheduler.getInstance().add(new DriveAdjustRight());
+                break;
       case 135: break;
       // SAVED POSITION LOW
       case 180: Scheduler.getInstance().add(new DriveToAngle(180));

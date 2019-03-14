@@ -40,7 +40,7 @@ public class DriveTimeReverse extends Command {
   @Override
   protected void execute() {
       count ++;
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(0.4, 0);
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-0.4, 0);
     }
 
 
