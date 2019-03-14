@@ -46,7 +46,8 @@ public class DriveCommand extends Command {
       case 180: Scheduler.getInstance().add(new DriveToAngle(180));
                 break;
       case 225: break;
-      case 270: break;
+      case 270: Scheduler.getInstance().add(new DriveAdjustLeft());
+                break;
       case 315: break;
     }
     SmartDashboard.putBoolean("StraightAssist", driveStraight);
