@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Grabber;
 import frc.robot.subsystems.Kickstand;
 import edu.wpi.first.wpilibj.CameraServer;
 
@@ -38,7 +37,6 @@ import edu.wpi.cscore.UsbCamera;
 public class Robot extends TimedRobot {
 
   public static Elevator elevator = new Elevator();
-  public static Grabber grabber = new Grabber();
   public static Arm arm = new Arm();
   public static Kickstand kickstand = new Kickstand();
 
