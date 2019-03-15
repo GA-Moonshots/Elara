@@ -79,7 +79,7 @@ public class OI {
     startButton.whenPressed(new KillAll());
     selectButton.whenPressed(new ArmHoldReset());
     xButton.whenPressed(new DriveSlow());
-    bButton.whenPressed(new DriveTimeReverse(1.0));
+    bButton.whenPressed(new DiscRelease());
   }
 
   

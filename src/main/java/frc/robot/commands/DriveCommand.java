@@ -63,7 +63,7 @@ public class DriveCommand extends Command {
     }
     if(Math.abs(valuelefty) < dead){
       valuelefty = 0;
-    }   
+    }
 
     // trigger assist driving straight 
     if(valuelefty < 0 && valueleftx == 0 && notMoving){
@@ -84,7 +84,7 @@ public class DriveCommand extends Command {
       double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
       Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -(difference * .03)); 
     } else {
-      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx*0.5); 
     }
 
   }
