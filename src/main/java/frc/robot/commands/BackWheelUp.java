@@ -12,14 +12,12 @@ import frc.robot.Robot;
 
 
 
-public class KickstandDown extends Command {
+public class BackWheelUp extends Command {
 
-  private int count = 0;
-  private double time = 2.0;
-  public KickstandDown() {
+  public BackWheelUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.kickstand);
+    requires(Robot.backWheel);
   }
 
   // Called just before this Command runs the first time
@@ -31,26 +29,25 @@ public class KickstandDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.kickstand.kickstandMotor.set(0.5);
-    count ++;
+    Robot.backWheel.backMotor.set(0.05);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return count >= time*30;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.kickstand.kickstandMotor.set(0.0);
+    Robot.backWheel.backMotor.set(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.kickstand.kickstandMotor.set(0.0);
+    Robot.backWheel.backMotor.set(0.0);
   }
 }

@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.DriveTank;
 import frc.robot.commands.KillAll;
-import frc.robot.commands.ArmHoldReset;
+import frc.robot.commands.BackWheelDown;
+import frc.robot.commands.DiscGrab;
 import frc.robot.commands.DiscRelease;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
-import frc.robot.commands.KickstandDown;
-import frc.robot.commands.KickstandUp;
+import frc.robot.commands.KickstandToggle;
 import frc.robot.commands.DriveSlow;
 
 /**
@@ -71,13 +71,13 @@ public class OI {
     // BUTTONS
     yButton.whileHeld(new ElevatorUp());
     aButton.whileHeld(new ElevatorDown());
-    leftBumper.whileHeld(new KickstandDown());
-    rightBumper.whileHeld(new KickstandUp());
+    leftBumper.whileHeld(new KickstandToggle());
+    rightBumper.whileHeld(new BackWheelDown());
     leftStickClick.whenPressed(new DriveCommand());
     rightStickClick.whenPressed(new DriveTank());
     startButton.whenPressed(new KillAll());
-    selectButton.whenPressed(new ArmHoldReset());
-    xButton.whenPressed(new DriveSlow());
+    selectButton.whenPressed(new DriveSlow());
+    xButton.whenPressed(new DiscGrab());
     bButton.whenPressed(new DiscRelease());
   }
 

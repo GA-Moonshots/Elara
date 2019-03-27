@@ -8,31 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import frc.robot.Robot;
 
+
+
 public class KickstandUp extends Command {
+
+  private int count = 0;
+  private double time = 4.0;
   public KickstandUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-     requires(Robot.kickstand);
+    requires(Robot.kickstand);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.kickstand.kickstandMotor.set(-0.2);
+    count ++;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return count >= time*30;
   }
 
   // Called once after isFinished returns true

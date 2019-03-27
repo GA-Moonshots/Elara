@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**
@@ -30,6 +31,22 @@ public class DriveTank extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    switch(OI.xbox.getPOV()){
+      case -1:   break;
+      // SAVED POSITION HIGH    
+      case 0:   break;
+      case 45:  break;
+      case 90:  Scheduler.getInstance().add(new DriveAdjustRight());
+                break;
+      case 135: break;
+      // SAVED POSITION LOW
+      case 180: Scheduler.getInstance().add(new DriveToAngle(180));
+                break;
+      case 225: break;
+      case 270: Scheduler.getInstance().add(new DriveAdjustLeft());
+                break;
+      case 315: break;
+    }
 
     //MANUAL DEAD ZONE
     double dead = 0.15;
