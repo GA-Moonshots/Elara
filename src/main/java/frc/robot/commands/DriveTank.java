@@ -8,7 +8,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 /**
@@ -16,7 +15,6 @@ import frc.robot.Robot;
  */
 public class DriveTank extends Command {
 
-  private double driveStraightAt;
 
   public DriveTank() {
     // Use requires() here to declare subsystem dependencies

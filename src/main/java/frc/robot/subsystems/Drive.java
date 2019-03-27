@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.DriveSmooth;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 

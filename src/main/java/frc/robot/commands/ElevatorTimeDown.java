@@ -7,13 +7,9 @@
 
 package frc.robot.commands;
 
-import java.util.concurrent.TimeUnit;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Elevator.ElevatorPosition;
 
 /**
  * Responding to motor control. Runs infinitely
