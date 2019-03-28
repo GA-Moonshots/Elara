@@ -31,7 +31,7 @@ public class KickstandDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.kickstand.kickstandMotor.set(0.5);
+    Robot.kickstand.kickstandMotor.set(0.7);
     count ++;
   }
 

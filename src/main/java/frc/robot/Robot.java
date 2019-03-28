@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
   public static Elevator elevator = new Elevator();
   public static Arm arm = new Arm();
   public static Kickstand kickstand = new Kickstand();
+  public static boolean kickstandDown = false;
   public static BackWheel backWheel = new BackWheel();
   public static Drive drivymcDriveDriverson = new Drive();
   public static OI m_oi;
@@ -87,8 +88,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    // TEST SENSORS
-    SmartDashboard.putNumber("POV", OI.xbox.getPOV());
+    SmartDashboard.putBoolean("Kick DOWN", kickstandDown);
     //SmartDashboard.putNumber("Arm Target", Robot.arm.holdAt);
   }
 

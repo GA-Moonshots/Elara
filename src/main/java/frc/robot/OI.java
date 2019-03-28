@@ -18,7 +18,9 @@ import frc.robot.commands.DiscGrab;
 import frc.robot.commands.DiscRelease;
 import frc.robot.commands.ElevatorDown;
 import frc.robot.commands.ElevatorUp;
+import frc.robot.commands.KickstandDown;
 import frc.robot.commands.KickstandToggle;
+import frc.robot.commands.KickstandUp;
 import frc.robot.commands.DriveSlow;
 
 /**
@@ -44,8 +46,8 @@ public class OI {
 
     yButton.whileHeld(new ElevatorUp());
     aButton.whileHeld(new ElevatorDown());
-    leftBumper.whileHeld(new KickstandToggle());
-    rightBumper.whileHeld(new BackWheelDown());
+    leftBumper.whenPressed(new KickstandToggle());
+    rightBumper.whenPressed(new BackWheelDown());
     leftStickClick.whenPressed(new DriveCommand());
     rightStickClick.whenPressed(new DriveTank());
     startButton.whenPressed(new KillAll());

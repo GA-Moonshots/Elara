@@ -29,7 +29,7 @@ public class BackWheelUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.backWheel.backMotor.set(0.3);
+    Robot.backWheel.backMotor.set(0.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

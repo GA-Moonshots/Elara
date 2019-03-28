@@ -15,7 +15,7 @@ import frc.robot.Robot;
 public class KickstandUp extends Command {
 
   private int count = 0;
-  private double time = 4.0;
+  private double time = 5.0;
   public KickstandUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -31,7 +31,7 @@ public class KickstandUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.kickstand.kickstandMotor.set(-0.2);
+    Robot.kickstand.kickstandMotor.set(-0.3);
     count ++;
   }
 
