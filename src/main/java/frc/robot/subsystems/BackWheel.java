@@ -22,7 +22,6 @@ public class BackWheel extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new BackWheelUp());
   }
 
 

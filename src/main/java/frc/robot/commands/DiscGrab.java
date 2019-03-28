@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DiscGrab extends CommandGroup {
     public  DiscGrab() {
-    	addSequential(new ElevatorTimeUp(1));
-        addSequential(new DriveTimeReverse(1));
+    	addSequential(new ElevatorTimeDown(3));
+        addSequential(new DriveTimeReverse(2));
     }
 }

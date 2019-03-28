@@ -42,7 +42,7 @@ public class DriveToAngle extends Command {
   private double notReallyPID() {
     // NOTE: Negative return values will increase the gyro's value
     double MAX_POWER = 0.7; // cap the power 
-    double MIN_POWER = 0.3; // lowest effective power
+    double MIN_POWER = 0.45; // lowest effective power
     int ENOUGH_CHECKS = 15; // how many times do we pass our target until we're satisfied?
 
     // determine the error

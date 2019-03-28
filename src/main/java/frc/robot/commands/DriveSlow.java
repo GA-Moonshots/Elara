@@ -39,7 +39,8 @@ public class DriveSlow extends Command {
     switch(OI.xbox.getPOV()){
       case -1:   break;
       // SAVED POSITION HIGH    
-      case 0:   break;
+      case 0:   Scheduler.getInstance().add(new DriveSlow());
+                break;
       case 45:  break;
       case 90:  Scheduler.getInstance().add(new DriveAdjustRight());
                 break;
