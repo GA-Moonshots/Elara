@@ -81,7 +81,6 @@ public class DriveSlow extends Command {
       notMoving = true;
       driveStraight = false;
     }
-    */
 
     if(driveStraight){
       //double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
@@ -89,6 +88,8 @@ public class DriveSlow extends Command {
     } else {
       Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -valueleftx*sensitivity*0.8); 
     }
+    */
+    Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -valueleftx*sensitivity*0.8); 
 
   }
 
