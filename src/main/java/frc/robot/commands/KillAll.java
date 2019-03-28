@@ -20,6 +20,8 @@ public class KillAll extends Command {
     requires(Robot.arm);
     requires(Robot.elevator);
     requires(Robot.drivymcDriveDriverson);
+    requires(Robot.kickstand);
+    requires(Robot.backWheel);
   }
 
   // Called just before this Command runs the first time
@@ -37,7 +39,7 @@ public class KillAll extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

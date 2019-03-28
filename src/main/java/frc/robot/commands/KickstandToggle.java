@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class KickstandToggle extends CommandGroup {
     private boolean isDown = false;
@@ -13,5 +14,6 @@ public class KickstandToggle extends CommandGroup {
             addSequential(new KickstandDown());
             isDown = !isDown;
         }
+        SmartDashboard.putBoolean("Kick DOWN", isDown);
     }
 }
