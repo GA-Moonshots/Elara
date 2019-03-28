@@ -40,8 +40,9 @@ public class ElevatorDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.position == ElevatorPosition.BELOW ||
-              !elevator.elevatorLimitDown.get();
+    //return elevator.position == ElevatorPosition.BELOW ||
+              //!elevator.elevatorLimitDown.get();
+              return false;
   }
 
   // Called once after isFinished returns true
