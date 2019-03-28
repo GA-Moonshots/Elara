@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 public class Drive extends Subsystem {
   
   // here's a gyro
-  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  //public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   // here's some motors
   public Jaguar leftMotor1;
@@ -42,7 +42,7 @@ public class Drive extends Subsystem {
   public Drive(){    
     // PID STUFF: https://frc-pdr.readthedocs.io/en/latest/control/using_WPILIB's_pid_controller.html#implementing-a-basic-pid-control
 
-    gyro.reset();
+    //gyro.reset();
     // linking motors to ports
     leftMotor1 = new Jaguar(RobotMap.LEFT1PORT);
     leftMotor2 = new Jaguar(RobotMap.LEFT2PORT);

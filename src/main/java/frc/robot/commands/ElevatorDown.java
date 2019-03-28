@@ -28,7 +28,7 @@ public class ElevatorDown extends Command {
   @Override
   protected void execute() {
     // if we triggered a setPoint
-    Robot.elevator.elevatorMotor.set(0.2);
+    Robot.elevator.elevatorMotor.set(0.18);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -141,7 +141,7 @@ public class Robot extends TimedRobot {
     }
 
     drivymcDriveDriverson.drive.arcadeDrive(0, 0);
-    drivymcDriveDriverson.gyro.reset();
+    //drivymcDriveDriverson.gyro.reset();
     
   
 		// camera1.setResolution(160, 120);
