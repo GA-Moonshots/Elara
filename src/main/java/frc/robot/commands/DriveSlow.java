@@ -53,7 +53,7 @@ public class DriveSlow extends Command {
       case 315: break;
     }
 
-    //SmartDashboard.putBoolean("StraightAssist", driveStraight);
+    SmartDashboard.putBoolean("StraightAssist", driveStraight);
     //MANUAL DEAD ZONE
     double dead = 0.1;
 
