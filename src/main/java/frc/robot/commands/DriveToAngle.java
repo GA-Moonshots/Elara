@@ -82,15 +82,16 @@ public class DriveToAngle extends Command {
   @Override
   protected boolean isFinished() {
     return true; // disable this command since our gyro broke
-    //return Robot.drivymcDriveDriverson.leftSide.get() == 0
-      //    && Math.abs(drive.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
+    /*
+    return Robot.drivymcDriveDriverson.leftSide.get() == 0
+        && Math.abs(drive.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
+    */
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
     drive.drive.arcadeDrive(0, 0);
-    check = 0;
   }
 
   // Called when another command which requires one or more of the same

@@ -82,10 +82,11 @@ public class DriveCommand extends Command {
       driveStraight = false;
     }
 
-        if(driveStraight){
-      //double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
-      //Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -(difference * .03)); 
+    if(driveStraight){
+      double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -(difference * .03)); 
     } else {
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx*0.5); 
     }
     */
     Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty, -valueleftx*0.5); 
