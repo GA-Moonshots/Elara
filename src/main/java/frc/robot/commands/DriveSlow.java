@@ -19,6 +19,8 @@ public class DriveSlow extends Command {
 
   private boolean driveStraight = false;
   private double sensitivity = 0.5;
+  private double driveStraightAt;
+  private boolean notMoving = true;
 
   public DriveSlow() {
     // Use requires() here to declare subsystem dependencies
@@ -39,14 +41,14 @@ public class DriveSlow extends Command {
       case 0:   Scheduler.getInstance().add(new DriveSlow());
                 break;
       case 45:  break;
-      case 90:  //Scheduler.getInstance().add(new DriveAdjustRight());
+      case 90:  Scheduler.getInstance().add(new DriveAdjustRight());
                 break;
       case 135: break;
       // SAVED POSITION LOW
-      case 180: //Scheduler.getInstance().add(new DriveToAngle(180));
+      case 180: Scheduler.getInstance().add(new DriveToAngle(180));
                 break;
       case 225: break;
-      case 270: //Scheduler.getInstance().add(new DriveAdjustLeft());
+      case 270: Scheduler.getInstance().add(new DriveAdjustLeft());
                 break;
       case 315: break;
     }
@@ -65,7 +67,7 @@ public class DriveSlow extends Command {
       valuelefty = 0;
     }   
     
-    /*
+    ///*
     // trigger assist driving straight 
     if(valuelefty != 0 && valueleftx == 0 && notMoving){
       notMoving = false;
@@ -82,13 +84,13 @@ public class DriveSlow extends Command {
     }
 
     if(driveStraight){
-      //double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
-      //Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -(difference * .03)); 
+      double difference = driveStraightAt - Robot.drivymcDriveDriverson.gyro.getAngle(); 
+      Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -(difference * .03)); 
     } else {
       Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -valueleftx*sensitivity*0.8); 
     }
-    */
-    Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -valueleftx*sensitivity*0.8); 
+    //*/
+    //Robot.drivymcDriveDriverson.drive.arcadeDrive(-valuelefty*sensitivity, -valueleftx*sensitivity*0.8); 
 
   }
 

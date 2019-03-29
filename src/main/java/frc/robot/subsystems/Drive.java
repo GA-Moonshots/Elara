@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 public class Drive extends Subsystem {
   
   // here's a gyro
-  //public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   // here's some motors
   public Jaguar leftMotor1;

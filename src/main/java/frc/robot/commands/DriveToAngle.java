@@ -35,7 +35,7 @@ public class DriveToAngle extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //target = drive.gyro.getAngle() + requestedRotation;
+    target = drive.gyro.getAngle() + requestedRotation;
     check = 0;
   }
 
@@ -81,11 +81,11 @@ public class DriveToAngle extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true; // disable this command since our gyro broke
-    /*
+    //return true; // disable this command since our gyro broke
+    ///*
     return Robot.drivymcDriveDriverson.leftSide.get() == 0
         && Math.abs(drive.gyro.getAngle() - target) < RobotMap.ANGLE_TOLERANCE;
-    */
+    //*/
   }
 
   // Called once after isFinished returns true
